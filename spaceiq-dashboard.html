@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpaceIQ — Enterprise Workspace Intelligence by WeWork India</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f3;
+    --bg-info: #e6f1fb;
+    --bg-warning: #faeeda;
+    --bg-success: #eaf3de;
+    --bg-danger: #fcebeb;
+    --text-primary: #1a1a1a;
+    --text-secondary: #5f5e5a;
+    --text-info: #185fa5;
+    --text-warning: #ba7517;
+    --text-success: #27500a;
+    --text-danger: #791f1f;
+    --border: rgba(0,0,0,0.12);
+    --radius-md: 8px;
+    --radius-lg: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-primary: #1e1e1c;
+      --bg-secondary: #2a2a28;
+      --bg-info: #0c447c;
+      --bg-warning: #633806;
+      --bg-success: #173404;
+      --bg-danger: #501313;
+      --text-primary: #f0ede8;
+      --text-secondary: #b4b2a9;
+      --text-info: #85b7eb;
+      --text-warning: #ef9f27;
+      --text-success: #97c459;
+      --text-danger: #f09595;
+      --border: rgba(255,255,255,0.12);
+    }
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg-secondary); color: var(--text-primary); min-height: 100vh; padding: 0; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+
+  /* Topbar */
+  .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-logo { width: 32px; height: 32px; border-radius: 8px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #fff; letter-spacing: 0.5px; }
+  .brand-name { font-size: 16px; font-weight: 500; color: var(--text-primary); }
+  .brand-sub { font-size: 12px; color: var(--text-secondary); }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .client-pill { font-size: 12px; padding: 5px 12px; border-radius: var(--radius-md); background: var(--bg-primary); border: 0.5px solid var(--border); color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+  select { font-size: 13px; padding: 5px 10px; border: 0.5px solid var(--border); border-radius: var(--radius-md); background: var(--bg-primary); color: var(--text-primary); cursor: pointer; }
+
+  /* Metrics */
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1rem; }
+  .metric { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 14px 16px; border: 0.5px solid var(--border); }
+  .metric-label { font-size: 11px; color: var(--text-secondary); margin-bottom: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .metric-val { font-size: 24px; font-weight: 500; color: var(--text-primary); line-height: 1; }
+  .metric-sub { font-size: 11px; margin-top: 5px; }
+
+  /* Layout rows */
+  .row2 { display: grid; grid-template-columns: 1.6fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+
+  /* Cards */
+  .card { background: var(--bg-primary); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.1rem 1.25rem; }
+  .card-hd { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+  .card-hd-label { font-size: 11px; color: var(--text-secondary); font-weight: 400; }
+
+  /* Center rows */
+  .center-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
+  .center-row:last-of-type { border-bottom: none; }
+  .center-info { flex: 1; min-width: 0; }
+  .center-name { font-size: 13px; color: var(--text-primary); }
+  .center-city { font-size: 11px; color: var(--text-secondary); }
+  .bar-wrap { width: 120px; height: 6px; background: var(--bg-secondary); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .pct { font-size: 12px; font-weight: 500; min-width: 38px; text-align: right; }
+
+  /* AI card */
+  .ai-hd { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .ai-chip { font-size: 10px; padding: 2px 7px; border-radius: var(--radius-md); background: var(--bg-info); color: var(--text-info); font-weight: 500; }
+  .insight { display: flex; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--border); }
+  .insight:last-of-type { border-bottom: none; }
+  .insight-dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+  .insight-text { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+  .insight-text strong { color: var(--text-primary); font-weight: 500; }
+
+  /* Heatmap */
+  .heatmap-grid { display: grid; grid-template-columns: 42px repeat(5, 1fr); gap: 4px; font-size: 10px; }
+  .hm-label { color: var(--text-secondary); display: flex; align-items: center; justify-content: center; font-weight: 500; }
+  .hm-cell { height: 32px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; }
+
+  /* Trends */
+  .trend-row { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; border-bottom: 0.5px solid var(--border); font-size: 13px; }
+  .trend-row:last-child { border-bottom: none; }
+  .trend-label { color: var(--text-secondary); }
+  .trend-val { color: var(--text-primary); font-weight: 500; }
+  .trend-delta { font-size: 11px; padding: 2px 7px; border-radius: var(--radius-md); }
+  .up { background: var(--bg-success); color: var(--text-success); }
+  .dn { background: var(--bg-danger); color: var(--text-danger); }
+
+  /* Forecast note */
+  .forecast-note { font-size: 11px; color: var(--text-secondary); margin-top: 10px; padding: 9px 11px; background: var(--bg-secondary); border-radius: var(--radius-md); line-height: 1.5; }
+
+  /* Legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 11px; color: var(--text-secondary); }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-swatch { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+  /* Button */
+  .action-btn { margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; padding: 7px 14px; border: 0.5px solid var(--border); border-radius: var(--radius-md); cursor: pointer; background: var(--bg-secondary); color: var(--text-primary); text-decoration: none; }
+  .action-btn:hover { background: var(--bg-primary); }
+
+  /* Heatmap legend */
+  .hm-legend { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 10px; color: var(--text-secondary); }
+  .hm-swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+  @media (max-width: 700px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .row2, .row3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-logo">SQ</div>
+      <div>
+        <div class="brand-name">SpaceIQ</div>
+        <div class="brand-sub">Workspace intelligence by WeWork India</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <span class="client-pill"><i class="ti ti-building" style="font-size:13px"></i> Infosys BPM &middot; Enterprise</span>
+      <select id="periodSel">
+        <option value="q">This quarter</option>
+        <option value="m">This month</option>
+        <option value="y">This year</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-label">Total seats leased</div>
+      <div class="metric-val">1,840</div>
+      <div class="metric-sub" style="color:var(--text-success)">+120 vs last quarter</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Avg utilization</div>
+      <div class="metric-val">67%</div>
+      <div class="metric-sub" style="color:var(--text-warning)">↓ 4% vs last quarter</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Monthly spend</div>
+      <div class="metric-val">₹42L</div>
+      <div class="metric-sub" style="color:var(--text-secondary)">₹2,283 / seat</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Savings opportunity</div>
+      <div class="metric-val" style="color:var(--text-info)">₹6.8L</div>
+      <div class="metric-sub" style="color:var(--text-info)">AI identified</div>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="card">
+      <div class="card-hd">Center utilization <span class="card-hd-label">current quarter</span></div>
+      <div class="center-row">
+        <div class="center-info"><div class="center-name">Prestige Tech Park</div><div class="center-city">Bengaluru</div></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:87%;background:#185FA5"></div></div>
+        <div class="pct" style="color:#185FA5">87%</div>
+      </div>
+      <div class="center-row">
+        <div class="center-info"><div class="center-name">DLF Cyber City</div><div class="center-city">Gurugram</div></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:79%;background:#185FA5"></div></div>
+        <div class="pct" style="color:#185FA5">79%</div>
+      </div>
+      <div class="center-row">
+        <div class="center-info"><div class="center-name">BKC One</div><div class="center-city">Mumbai</div></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:71%;background:#BA7517"></div></div>
+        <div class="pct" style="color:#BA7517">71%</div>
+      </div>
+      <div class="center-row">
+        <div class="center-info"><div class="center-name">RMZ Millenia</div><div class="center-city">Chennai</div></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:58%;background:#BA7517"></div></div>
+        <div class="pct" style="color:#BA7517">58%</div>
+      </div>
+      <div class="center-row">
+        <div class="center-info"><div class="center-name">Cyber Pearl</div><div class="center-city">Hyderabad</div></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:41%;background:#A32D2D"></div></div>
+        <div class="pct" style="color:#A32D2D">41%</div>
+      </div>
+      <div class="forecast-note"><i class="ti ti-info-circle" style="font-size:12px;vertical-align:-1px"></i> Hyderabad below 50% threshold — AI suggests right-sizing by 80 seats at renewal to save ₹1.8L/month</div>
+    </div>
+
+    <div class="card">
+      <div class="ai-hd">
+        <i class="ti ti-sparkles" style="font-size:16px;color:var(--text-info)"></i>
+        <span style="font-size:13px;font-weight:500;color:var(--text-primary)">AI recommendations</span>
+        <span class="ai-chip">3 new</span>
+      </div>
+      <div class="insight">
+        <div class="insight-dot" style="background:#BA7517"></div>
+        <div class="insight-text"><strong>Hyderabad underutilized.</strong> 41% avg over 8 weeks. Consider releasing 80 seats at renewal (Dec). Projected saving: <strong>₹1.8L/mo</strong>.</div>
+      </div>
+      <div class="insight">
+        <div class="insight-dot" style="background:#185FA5"></div>
+        <div class="insight-text"><strong>Bengaluru near capacity.</strong> Prestige hitting 87% Tue–Thu. Recommend adding 60 flex seats before Q3 to avoid crunch during appraisal season.</div>
+      </div>
+      <div class="insight">
+        <div class="insight-dot" style="background:#3B6D11"></div>
+        <div class="insight-text"><strong>Cost benchmark.</strong> Your ₹2,283/seat is <strong>11% below</strong> Infosys BPM peer average (₹2,560) for comparable GCC enterprise clients.</div>
+      </div>
+      <div class="insight">
+        <div class="insight-dot" style="background:#185FA5"></div>
+        <div class="insight-text"><strong>Peak day pattern.</strong> Tuesday attendance is 2.1× Monday across all centers. Consider staggered anchor-day policy to reduce peak pressure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row3">
+    <div class="card">
+      <div class="card-hd">Day-of-week heat map <span class="card-hd-label">all centers</span></div>
+      <div class="heatmap-grid">
+        <div class="hm-label"></div>
+        <div class="hm-label">Mon</div>
+        <div class="hm-label">Tue</div>
+        <div class="hm-label">Wed</div>
+        <div class="hm-label">Thu</div>
+        <div class="hm-label">Fri</div>
+
+        <div class="hm-label">AM</div>
+        <div class="hm-cell" style="background:#B5D4F4;color:#0C447C">54%</div>
+        <div class="hm-cell" style="background:#185FA5;color:#E6F1FB">91%</div>
+        <div class="hm-cell" style="background:#378ADD;color:#E6F1FB">78%</div>
+        <div class="hm-cell" style="background:#378ADD;color:#E6F1FB">82%</div>
+        <div class="hm-cell" style="background:#85B7EB;color:#0C447C">63%</div>
+
+        <div class="hm-label">PM</div>
+        <div class="hm-cell" style="background:#E6F1FB;color:#185FA5">42%</div>
+        <div class="hm-cell" style="background:#378ADD;color:#E6F1FB">76%</div>
+        <div class="hm-cell" style="background:#85B7EB;color:#0C447C">69%</div>
+        <div class="hm-cell" style="background:#85B7EB;color:#0C447C">71%</div>
+        <div class="hm-cell" style="background:#E6F1FB;color:#185FA5">38%</div>
+      </div>
+      <div class="hm-legend">
+        <span class="hm-swatch" style="background:#E6F1FB;border:0.5px solid #B5D4F4"></span>Low (&lt;50%)
+        <span class="hm-swatch" style="background:#85B7EB;margin-left:6px"></span>Medium (50–79%)
+        <span class="hm-swatch" style="background:#185FA5;margin-left:6px"></span>High (80%+)
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd">Quarter-on-quarter trends</div>
+      <div class="trend-row"><span class="trend-label">Utilization (avg)</span><div style="display:flex;align-items:center;gap:8px"><span class="trend-val">67%</span><span class="trend-delta dn">↓ 4pp</span></div></div>
+      <div class="trend-row"><span class="trend-label">Cost per seat</span><div style="display:flex;align-items:center;gap:8px"><span class="trend-val">₹2,283</span><span class="trend-delta up">↓ 3%</span></div></div>
+      <div class="trend-row"><span class="trend-label">Peak-day variance</span><div style="display:flex;align-items:center;gap:8px"><span class="trend-val">2.1×</span><span class="trend-delta dn">↑ 0.3×</span></div></div>
+      <div class="trend-row"><span class="trend-label">Service requests</span><div style="display:flex;align-items:center;gap:8px"><span class="trend-val">312</span><span class="trend-delta up">↓ 18%</span></div></div>
+      <div class="trend-row"><span class="trend-label">NPS (member score)</span><div style="display:flex;align-items:center;gap:8px"><span class="trend-val">71</span><span class="trend-delta up">↑ 6pts</span></div></div>
+      <div class="forecast-note"><i class="ti ti-chart-line" style="font-size:12px;vertical-align:-1px"></i> AI forecast: utilization will recover to 72% by end of Q3 if anchor-day policy is adopted</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">Utilization over time — all centers <span class="card-hd-label">Q1–Q2 FY26</span></div>
+    <div style="position:relative;width:100%;height:240px">
+      <canvas id="utilChart" role="img" aria-label="Line chart showing monthly utilization across 5 WeWork India centers Jan–Jun. Bengaluru peaks at 87%, Hyderabad trends down to 41%.">Monthly utilization Jan–Jun: Bengaluru 87%, Gurugram 79%, Mumbai 71%, Chennai 58%, Hyderabad 41%.</canvas>
+    </div>
+    <div class="legend" id="chartLegend"></div>
+  </div>
+
+</div>
+
+<script>
+const months = ['Jan','Feb','Mar','Apr','May','Jun'];
+const datasets = [
+  {label:'Prestige (BLR)', data:[74,78,81,84,87,87], color:'#185FA5'},
+  {label:'DLF (GGN)',      data:[71,73,76,77,79,79], color:'#3B6D11'},
+  {label:'BKC (MUM)',      data:[65,68,70,71,72,71], color:'#BA7517'},
+  {label:'RMZ (CHN)',      data:[60,59,58,57,58,58], color:'#993556'},
+  {label:'Cyber Pearl (HYD)', data:[55,50,46,43,41,41], color:'#A32D2D'},
+];
+
+new Chart(document.getElementById('utilChart'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: datasets.map(d => ({
+      label: d.label,
+      data: d.data,
+      borderColor: d.color,
+      backgroundColor: d.color,
+      borderWidth: 2,
+      pointRadius: 4,
+      tension: 0.35,
+      fill: false
+    }))
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
+    scales: {
+      y: { min: 30, max: 100, ticks: { callback: v => v + '%', font: { size: 11 } }, grid: { color: 'rgba(128,128,128,0.1)' } },
+      x: { ticks: { font: { size: 11 } }, grid: { display: false } }
+    }
+  }
+});
+
+const leg = document.getElementById('chartLegend');
+datasets.forEach(d => {
+  const s = document.createElement('span');
+  s.className = 'legend-item';
+  s.innerHTML = `<span class="legend-swatch" style="background:${d.color}"></span>${d.label}`;
+  leg.appendChild(s);
+});
+</script>
+</body>
+</html>
