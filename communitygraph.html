@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CommunityGraph — AI Member Connections · WeWork India</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f6f3;
+    --bg-card: #ffffff;
+    --bg-secondary: #f1efe8;
+    --text: #1a1a1a;
+    --text-muted: #5f5e5a;
+    --text-light: #888780;
+    --border: rgba(0,0,0,0.1);
+    --purple-bg: #EEEDFE; --purple-text: #3C3489; --purple-mid: #534AB7;
+    --teal-bg: #E1F5EE; --teal-text: #085041;
+    --coral-bg: #FAECE7; --coral-text: #712B13;
+    --blue-bg: #E6F1FB; --blue-text: #0C447C; --blue-mid: #185FA5;
+    --amber-bg: #FAEEDA; --amber-text: #633806;
+    --pink-bg: #FBEAF0; --pink-text: #72243E;
+    --green-bg: #EAF3DE; --green-text: #27500A;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a18; --bg-card: #242422; --bg-secondary: #2e2e2c;
+      --text: #f0ede8; --text-muted: #b4b2a9; --text-light: #888780;
+      --border: rgba(255,255,255,0.1);
+      --purple-bg: #26215C; --purple-text: #CECBF6; --purple-mid: #7F77DD;
+      --teal-bg: #04342C; --teal-text: #9FE1CB;
+      --coral-bg: #4A1B0C; --coral-text: #F5C4B3;
+      --blue-bg: #042C53; --blue-text: #B5D4F4; --blue-mid: #378ADD;
+      --amber-bg: #412402; --amber-text: #FAC775;
+      --pink-bg: #4B1528; --pink-text: #F4C0D1;
+      --green-bg: #173404; --green-text: #C0DD97;
+    }
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+
+  nav { background: var(--bg-card); border-bottom: 0.5px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo { width: 28px; height: 28px; border-radius: 7px; background: var(--purple-mid); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--purple-bg); }
+  .nav-title { font-size: 15px; font-weight: 500; color: var(--text); }
+  .nav-back { font-size: 12px; color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 4px; }
+  .nav-back:hover { color: var(--text); }
+
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; margin-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-icon { width: 30px; height: 30px; border-radius: 8px; background: var(--purple-mid); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--purple-bg); }
+  .brand-name { font-size: 15px; font-weight: 500; color: var(--text); }
+  .brand-sub { font-size: 11px; color: var(--text-muted); }
+  .user-pill { display: flex; align-items: center; gap: 8px; }
+
+  .avatar { border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 500; flex-shrink: 0; }
+  .av-sm { width: 32px; height: 32px; font-size: 12px; }
+  .av-md { width: 40px; height: 40px; font-size: 14px; }
+  .av-purple { background: var(--purple-bg); color: var(--purple-text); }
+  .av-teal   { background: var(--teal-bg);   color: var(--teal-text); }
+  .av-coral  { background: var(--coral-bg);  color: var(--coral-text); }
+  .av-blue   { background: var(--blue-bg);   color: var(--blue-text); }
+  .av-amber  { background: var(--amber-bg);  color: var(--amber-text); }
+  .av-pink   { background: var(--pink-bg);   color: var(--pink-text); }
+
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 1rem; }
+  .metric { background: var(--bg-secondary); border-radius: 8px; padding: 10px 12px; }
+  .metric-label { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .metric-val { font-size: 22px; font-weight: 500; color: var(--text); }
+  .metric-sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+  .layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 10px; margin-bottom: 10px; }
+  .card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; }
+  .card-hd { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+  .hd-right { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+
+  .match-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 8px; }
+  .match-card.featured { border: 2px solid var(--purple-mid); }
+  .top-badge { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--purple-bg); color: var(--purple-text); display: inline-block; margin-bottom: 8px; font-weight: 500; }
+  .match-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .match-info { flex: 1; min-width: 0; }
+  .match-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .match-role { font-size: 12px; color: var(--text-muted); }
+  .match-center { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .score-ring { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--purple-mid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .score-val { font-size: 12px; font-weight: 500; color: var(--purple-mid); }
+  .score-teal { border-color: #0F6E56; } .score-teal .score-val { color: #0F6E56; }
+  .score-blue { border-color: var(--blue-mid); } .score-blue .score-val { color: var(--blue-mid); }
+
+  .match-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 20px; }
+  .tag-purple { background: var(--purple-bg); color: var(--purple-text); }
+  .tag-teal   { background: var(--teal-bg);   color: var(--teal-text); }
+  .tag-coral  { background: var(--coral-bg);  color: var(--coral-text); }
+  .tag-gray   { background: var(--bg-secondary); color: var(--text-muted); }
+
+  .match-reason { font-size: 12px; color: var(--text-muted); line-height: 1.55; padding: 8px 10px; background: var(--bg-secondary); border-radius: 8px; margin-bottom: 10px; }
+  .match-reason strong { color: var(--text); font-weight: 500; }
+  .match-actions { display: flex; gap: 6px; }
+  .btn-connect { font-size: 12px; padding: 5px 14px; border-radius: 8px; background: var(--purple-mid); color: var(--purple-bg); border: none; cursor: pointer; font-family: inherit; }
+  .btn-connect:hover { opacity: 0.85; }
+  .btn-msg { font-size: 12px; padding: 5px 14px; border-radius: 8px; background: var(--bg-secondary); color: var(--text-muted); border: 0.5px solid var(--border); cursor: pointer; font-family: inherit; }
+  .btn-msg:hover { color: var(--text); }
+
+  .event-item { display: flex; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--border); }
+  .event-item:last-child { border-bottom: none; }
+  .event-date { width: 36px; text-align: center; flex-shrink: 0; }
+  .event-day { font-size: 18px; font-weight: 500; color: var(--text); line-height: 1; }
+  .event-mon { font-size: 10px; color: var(--text-muted); }
+  .event-body { flex: 1; min-width: 0; }
+  .event-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .event-meta { font-size: 11px; color: var(--text-muted); }
+  .event-pill { font-size: 10px; padding: 2px 7px; border-radius: 20px; display: inline-block; margin-top: 4px; }
+  .pill-ai   { background: var(--purple-bg); color: var(--purple-text); }
+  .pill-live { background: var(--teal-bg);   color: var(--teal-text); }
+  .pill-open { background: var(--bg-secondary); color: var(--text-muted); }
+  .attendees { display: flex; margin-top: 6px; align-items: center; }
+  .att-av { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--bg-card); margin-right: -6px; font-size: 9px; font-weight: 500; display: flex; align-items: center; justify-content: center; }
+  .att-count { font-size: 11px; color: var(--text-muted); margin-left: 12px; }
+
+  .your-profile { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--bg-secondary); border-radius: 8px; margin-bottom: 12px; }
+  .profile-info { flex: 1; }
+  .profile-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .profile-role { font-size: 11px; color: var(--text-muted); }
+  .profile-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+
+  .ai-note { font-size: 12px; color: var(--text-muted); line-height: 1.6; padding: 8px 10px; background: var(--bg-secondary); border-radius: 8px; }
+
+  .insight-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .insight-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 12px; padding: 14px; }
+  .insight-icon { font-size: 20px; color: var(--text-muted); margin-bottom: 8px; }
+  .insight-num { font-size: 22px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .insight-label { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  @media (max-width: 700px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .layout { grid-template-columns: 1fr; }
+    .insight-strip { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <div class="nav-logo"><i class="ti ti-network"></i></div>
+    <span class="nav-title">WeWork India · AI Opportunities</span>
+  </a>
+  <a class="nav-back" href="index.html"><i class="ti ti-arrow-left" style="font-size:13px"></i> Back to all concepts</a>
+</nav>
+
+<div class="page">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-icon"><i class="ti ti-network"></i></div>
+      <div>
+        <div class="brand-name">CommunityGraph</div>
+        <div class="brand-sub">AI member connections · WeWork India</div>
+      </div>
+    </div>
+    <div class="user-pill">
+      <div class="avatar av-sm av-purple">MK</div>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:var(--text)">Manoj K.</div>
+        <div style="font-size:11px;color:var(--text-muted)">Prestige Tech Park, BLR</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-label">Members in your centers</div>
+      <div class="metric-val">2,340</div>
+      <div class="metric-sub">across 3 BLR locations</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">AI match score ≥80%</div>
+      <div class="metric-val">47</div>
+      <div class="metric-sub">strong matches found</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Connections made</div>
+      <div class="metric-val">12</div>
+      <div class="metric-sub">this quarter</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Collab intros</div>
+      <div class="metric-val">3</div>
+      <div class="metric-sub" style="color:var(--teal-text)">active projects</div>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <div>
+      <div style="font-size:13px;font-weight:500;color:var(--text);padding:0 0 10px;display:flex;align-items:center;justify-content:space-between">
+        Your top matches
+        <span style="font-size:11px;color:var(--text-muted);font-weight:400">sorted by AI score</span>
+      </div>
+
+      <div class="match-card featured">
+        <div class="top-badge">Top match</div>
+        <div class="match-top">
+          <div class="avatar av-md av-teal">PR</div>
+          <div class="match-info">
+            <div class="match-name">Priya Raghunathan</div>
+            <div class="match-role">Head of AI Products · Flipkart</div>
+            <div class="match-center"><i class="ti ti-map-pin" style="font-size:11px;vertical-align:-1px"></i> Embassy Tech Village, BLR</div>
+          </div>
+          <div class="score-ring"><div class="score-val">94%</div></div>
+        </div>
+        <div class="match-tags">
+          <span class="tag tag-purple">AI/ML product</span>
+          <span class="tag tag-purple">platform strategy</span>
+          <span class="tag tag-teal">e-commerce</span>
+          <span class="tag tag-gray">IIT Delhi</span>
+        </div>
+        <div class="match-reason"><strong>Why this match:</strong> Both lead AI product teams at large consumer platforms. Shared interest in ML-driven personalization and agentic systems. Priya spoke at a GenAI workshop you bookmarked last month.</div>
+        <div class="match-actions">
+          <button class="btn-connect">Connect</button>
+          <button class="btn-msg">Send intro note</button>
+        </div>
+      </div>
+
+      <div class="match-card">
+        <div class="match-top">
+          <div class="avatar av-md av-coral">AS</div>
+          <div class="match-info">
+            <div class="match-name">Arjun Sharma</div>
+            <div class="match-role">VP Engineering · Razorpay</div>
+            <div class="match-center"><i class="ti ti-map-pin" style="font-size:11px;vertical-align:-1px"></i> Prestige Tech Park, BLR</div>
+          </div>
+          <div class="score-ring score-teal"><div class="score-val">87%</div></div>
+        </div>
+        <div class="match-tags">
+          <span class="tag tag-teal">fintech</span>
+          <span class="tag tag-purple">platform APIs</span>
+          <span class="tag tag-gray">same center</span>
+        </div>
+        <div class="match-reason"><strong>Why this match:</strong> Shared focus on developer-facing platforms. Both managing large distributed PM/engineering teams. You're both in Prestige — likely to cross paths Tue–Thu.</div>
+        <div class="match-actions">
+          <button class="btn-connect">Connect</button>
+          <button class="btn-msg">Send intro note</button>
+        </div>
+      </div>
+
+      <div class="match-card">
+        <div class="match-top">
+          <div class="avatar av-md av-blue">NK</div>
+          <div class="match-info">
+            <div class="match-name">Nandita Kumar</div>
+            <div class="match-role">Director, Product · PhonePe</div>
+            <div class="match-center"><i class="ti ti-map-pin" style="font-size:11px;vertical-align:-1px"></i> RMZ Ecoworld, BLR</div>
+          </div>
+          <div class="score-ring score-blue"><div class="score-val">81%</div></div>
+        </div>
+        <div class="match-tags">
+          <span class="tag tag-teal">payments</span>
+          <span class="tag tag-purple">consumer AI</span>
+          <span class="tag tag-gray">global markets</span>
+        </div>
+        <div class="match-reason"><strong>Why this match:</strong> Both have international product leadership backgrounds. Nandita is exploring a talk on "AI in financial services" — aligns with your post-purchase and payments work at Walmart.</div>
+        <div class="match-actions">
+          <button class="btn-connect">Connect</button>
+          <button class="btn-msg">Send intro note</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+
+      <div class="card">
+        <div class="card-hd">Your profile signals <span class="hd-right">used for matching</span></div>
+        <div class="your-profile">
+          <div class="avatar av-md av-purple">MK</div>
+          <div class="profile-info">
+            <div class="profile-name">Manoj Kumar</div>
+            <div class="profile-role">Director of Product · Walmart Global Tech</div>
+            <div class="profile-tags">
+              <span class="tag tag-purple">AI/ML product</span>
+              <span class="tag tag-teal">global platforms</span>
+              <span class="tag tag-purple">GenAI agents</span>
+              <span class="tag tag-gray">IIT Delhi</span>
+              <span class="tag tag-coral">e-commerce</span>
+            </div>
+          </div>
+        </div>
+        <div class="ai-note">
+          <i class="ti ti-sparkles" style="font-size:12px;color:var(--purple-mid);vertical-align:-1px"></i>
+          AI uses your role, skills, check-in patterns, bookmarked events, and mutual connections to rank matches — not your personal data.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd">Upcoming community events <span class="hd-right">AI-curated for you</span></div>
+        <div class="event-item">
+          <div class="event-date"><div class="event-day">12</div><div class="event-mon">Jun</div></div>
+          <div class="event-body">
+            <div class="event-name">GenAI Product Leaders Roundtable</div>
+            <div class="event-meta">Prestige Tech Park · 6:00 PM</div>
+            <span class="event-pill pill-ai"><i class="ti ti-sparkles" style="font-size:10px;vertical-align:-1px"></i> 4 of your matches attending</span>
+            <div class="attendees">
+              <div class="att-av av-teal">PR</div>
+              <div class="att-av av-amber">RS</div>
+              <div class="att-av av-coral">VN</div>
+              <div class="att-av av-pink">DM</div>
+              <span class="att-count">+18 members</span>
+            </div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date"><div class="event-day">18</div><div class="event-mon">Jun</div></div>
+          <div class="event-body">
+            <div class="event-name">Platform API Design workshop</div>
+            <div class="event-meta">RMZ Ecoworld · 10:00 AM</div>
+            <span class="event-pill pill-live">Live · 12 seats left</span>
+            <div class="attendees">
+              <div class="att-av av-blue">NK</div>
+              <div class="att-av av-coral">AS</div>
+              <span class="att-count">+9 members</span>
+            </div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date"><div class="event-day">25</div><div class="event-mon">Jun</div></div>
+          <div class="event-body">
+            <div class="event-name">GCC leaders breakfast · Bengaluru</div>
+            <div class="event-meta">Prestige Central · 8:30 AM</div>
+            <span class="event-pill pill-open">Open to all members</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="insight-strip">
+    <div class="insight-card">
+      <div class="insight-icon"><i class="ti ti-users"></i></div>
+      <div class="insight-num">340</div>
+      <div class="insight-label">Members with AI/ML background in your centers — largest cluster</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon"><i class="ti ti-repeat"></i></div>
+      <div class="insight-num">2.4×</div>
+      <div class="insight-label">Connected members renew at 2.4× the rate of unconnected ones</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon"><i class="ti ti-building-community"></i></div>
+      <div class="insight-num">28</div>
+      <div class="insight-label">Cross-company collaborations started via CommunityGraph this quarter</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
