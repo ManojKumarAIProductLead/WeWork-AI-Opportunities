@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WeWork India — AI Opportunities</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f6f3;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5f5e5a;
+    --text-light: #888780;
+    --border: rgba(0,0,0,0.1);
+    --accent: #185FA5;
+    --accent-bg: #e6f1fb;
+    --accent-text: #0c447c;
+    --success-bg: #eaf3de;
+    --success-text: #27500a;
+    --warn-bg: #faeeda;
+    --warn-text: #633806;
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* NAV */
+  nav { background: var(--bg-card); border-bottom: 0.5px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo { width: 28px; height: 28px; border-radius: 6px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #fff; }
+  .nav-title { font-size: 15px; font-weight: 500; color: var(--text); }
+  .nav-right { font-size: 12px; color: var(--text-muted); }
+
+  /* HERO */
+  .hero { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 2rem; }
+  .hero-eyebrow { font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+  .hero-title { font-size: 36px; font-weight: 500; color: var(--text); line-height: 1.2; margin-bottom: 16px; }
+  .hero-title span { color: var(--accent); }
+  .hero-desc { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 580px; margin-bottom: 2rem; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
+  .tag { font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 0.5px solid var(--border); color: var(--text-muted); background: var(--bg-card); }
+
+  /* SECTION */
+  .section { max-width: 720px; margin: 0 auto; padding: 0 2rem 4rem; }
+  .section-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 8px; border-bottom: 0.5px solid var(--border); }
+
+  /* PROTOTYPE CARD */
+  .proto-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1rem; }
+  .proto-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 12px; }
+  .proto-badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: var(--success-bg); color: var(--success-text); font-weight: 500; white-space: nowrap; margin-top: 2px; }
+  .proto-name { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .proto-tagline { font-size: 13px; color: var(--text-muted); }
+  .proto-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; }
+  .proto-features { list-style: none; margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 6px; }
+  .proto-features li { font-size: 13px; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; }
+  .proto-features li i { color: var(--accent); margin-top: 2px; flex-shrink: 0; font-size: 14px; }
+  .proto-insight { background: var(--accent-bg); border-radius: 8px; padding: 10px 14px; margin-bottom: 1.25rem; font-size: 13px; color: var(--accent-text); line-height: 1.55; }
+  .proto-insight strong { font-weight: 500; }
+  .proto-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 8px; background: var(--text); color: #fff; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.15s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; padding: 9px 18px; border-radius: 8px; background: var(--bg); color: var(--text-muted); text-decoration: none; border: 0.5px solid var(--border); transition: background 0.15s; }
+  .btn-secondary:hover { background: var(--bg-card); }
+
+  /* COMING SOON CARDS */
+  .coming-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .coming-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; }
+  .coming-icon { font-size: 20px; color: var(--text-light); margin-bottom: 8px; }
+  .coming-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .coming-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+  .coming-pill { display: inline-block; margin-top: 8px; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--warn-bg); color: var(--warn-text); }
+
+  /* FOOTER */
+  footer { border-top: 0.5px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 12px; color: var(--text-light); }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-logo">MK</div>
+    <span class="nav-title">Manoj Kumar · AI Product</span>
+  </a>
+  <span class="nav-right">WeWork India · AI Opportunities</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">AI Product Portfolio</div>
+  <div class="hero-title">AI opportunities for<br><span>WeWork India</span></div>
+  <div class="hero-desc">
+    A set of AI product concepts and working prototypes exploring how WeWork India can embed intelligence across its Workspace-as-a-Service stack — from enterprise analytics to member experience to operational efficiency.
+  </div>
+  <div class="hero-tags">
+    <span class="tag">Workspace-as-a-Service</span>
+    <span class="tag">Enterprise AI</span>
+    <span class="tag">Occupancy intelligence</span>
+    <span class="tag">Member experience</span>
+    <span class="tag">GenAI agents</span>
+    <span class="tag">India GCC market</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Live prototype</div>
+
+  <div class="proto-card">
+    <div class="proto-header">
+      <div>
+        <div class="proto-name">SpaceIQ</div>
+        <div class="proto-tagline">Enterprise workspace intelligence dashboard</div>
+      </div>
+      <span class="proto-badge"><i class="ti ti-check" style="font-size:10px;vertical-align:-1px"></i> Live</span>
+    </div>
+
+    <div class="proto-body">
+      Enterprise clients managing hundreds of seats across multiple WeWork centers have zero visibility into how their space is actually being used. SpaceIQ gives GCCs and MNCs a real-time analytics layer — seat utilization by center, cost benchmarking against peers, AI-generated capacity recommendations, and demand heat maps — turning WeWork from a landlord into a strategic workspace partner.
+    </div>
+
+    <ul class="proto-features">
+      <li><i class="ti ti-chart-bar"></i>Center-by-center utilization tracking across Bengaluru, Gurugram, Mumbai, Chennai, Hyderabad</li>
+      <li><i class="ti ti-sparkles"></i>AI recommendations panel — flags underutilized centers, capacity risks, cost benchmarks vs peer GCCs</li>
+      <li><i class="ti ti-layout-grid"></i>Day-of-week heat map to inform anchor-day and hybrid attendance policies</li>
+      <li><i class="ti ti-trending-up"></i>Quarter-on-quarter trends: utilization, cost/seat, NPS, service requests</li>
+      <li><i class="ti ti-chart-line"></i>Interactive 6-month utilization trend chart across all centers</li>
+    </ul>
+
+    <div class="proto-insight">
+      <strong>Business case:</strong> Every enterprise client that can see their underutilized seats is more likely to right-size at renewal (removes zombie inventory for WeWork) and expand where genuinely needed. Reduces churn, enables data-driven upsell. Value-added services are ~14–15% of WeWork India's revenue — SpaceIQ is the intelligence layer that makes them defensible.
+    </div>
+
+    <div class="proto-actions">
+      <a class="btn-primary" href="spaceiq-dashboard.html" target="_blank">
+        <i class="ti ti-eye" style="font-size:15px"></i> Preview dashboard
+      </a>
+      <a class="btn-secondary" href="https://github.com/ManojKumarAIProductLead/WeWork-AI-Opportunities/blob/main/spaceiq-dashboard.html" target="_blank">
+        <i class="ti ti-brand-github" style="font-size:15px"></i> View source
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Coming soon</div>
+  <div class="coming-grid">
+    <div class="coming-card">
+      <div class="coming-icon"><i class="ti ti-message-chatbot"></i></div>
+      <div class="coming-name">WorkPal</div>
+      <div class="coming-desc">Agentic member assistant — handles support, bookings, and service requests conversationally inside the WeWork app.</div>
+      <span class="coming-pill">In design</span>
+    </div>
+    <div class="coming-card">
+      <div class="coming-icon"><i class="ti ti-adjustments"></i></div>
+      <div class="coming-name">FlexFill</div>
+      <div class="coming-desc">ML-driven dynamic pricing and demand prediction to optimize yield on on-demand desk inventory.</div>
+      <span class="coming-pill">In design</span>
+    </div>
+    <div class="coming-card">
+      <div class="coming-icon"><i class="ti ti-settings-automation"></i></div>
+      <div class="coming-name">ServiceOS</div>
+      <div class="coming-desc">AI operations layer for center managers to coordinate managed services — transport, F&B, workplace experience.</div>
+      <span class="coming-pill">In design</span>
+    </div>
+    <div class="coming-card">
+      <div class="coming-icon"><i class="ti ti-network"></i></div>
+      <div class="coming-name">CommunityGraph</div>
+      <div class="coming-desc">AI-powered member matching — surfaces relevant connections, collaboration opportunities, and events.</div>
+      <span class="coming-pill">In design</span>
+    </div>
+    <div class="coming-card">
+      <div class="coming-icon"><i class="ti ti-map-pin"></i></div>
+      <div class="coming-name">LocationIQ</div>
+      <div class="coming-desc">AI site-selection scoring using mobility data, enterprise cluster density, and demand signals for expansion decisions.</div>
+      <span class="coming-pill">In design</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Built by <a href="https://www.linkedin.com/in/manojkumar-pm/" target="_blank">Manoj Kumar</a> · Director of Product Management · AI Product Leadership exploration
+</footer>
+
+</body>
+</html>
