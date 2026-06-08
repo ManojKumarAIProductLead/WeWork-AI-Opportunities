@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorkPal — Agentic Member Assistant · WeWork India</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f6f3; --bg-card: #ffffff; --bg-secondary: #f1efe8;
+    --text: #1a1a1a; --text-muted: #5f5e5a; --text-light: #888780;
+    --border: rgba(0,0,0,0.1);
+    --teal: #0F6E56; --teal-bg: #E1F5EE; --teal-mid: #1D9E75; --teal-text: #085041;
+    --blue-bg: #E6F1FB; --blue-text: #0C447C;
+    --green-bg: #EAF3DE; --green-text: #27500A;
+    --amber-bg: #FAEEDA; --amber-text: #633806;
+    --purple-bg: #EEEDFE; --purple-text: #3C3489;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a18; --bg-card: #242422; --bg-secondary: #2e2e2c;
+      --text: #f0ede8; --text-muted: #b4b2a9; --text-light: #888780;
+      --border: rgba(255,255,255,0.1);
+      --teal: #5DCAA5; --teal-bg: #04342C; --teal-mid: #1D9E75; --teal-text: #9FE1CB;
+      --blue-bg: #042C53; --blue-text: #B5D4F4;
+      --green-bg: #173404; --green-text: #C0DD97;
+      --amber-bg: #412402; --amber-text: #FAC775;
+      --purple-bg: #26215C; --purple-text: #CECBF6;
+    }
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  .page { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
+
+  nav { background: var(--bg-card); border-bottom: 0.5px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo { width: 28px; height: 28px; border-radius: 7px; background: var(--teal-mid); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--teal-bg); }
+  .nav-title { font-size: 15px; font-weight: 500; color: var(--text); }
+  .nav-back { font-size: 13px; color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 5px; padding: 6px 12px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--bg-secondary); }
+  .nav-back:hover { color: var(--text); }
+
+  .page-hd { padding: 2rem 0 1.5rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.5rem; }
+  .page-eyebrow { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-mid); display: inline-block; }
+  .page-title { font-size: 28px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+  .page-sub { font-size: 15px; color: var(--text-muted); line-height: 1.6; max-width: 640px; }
+
+  .layout { display: grid; grid-template-columns: 340px 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+
+  .card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; }
+  .card-hd { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+  .card-hd-sub { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+
+  .chat-window { display: flex; flex-direction: column; gap: 10px; }
+  .msg { display: flex; gap: 8px; align-items: flex-start; }
+  .msg-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; }
+  .av-bot { background: var(--teal-bg); color: var(--teal-text); }
+  .av-user { background: var(--bg-secondary); color: var(--text-muted); }
+  .bubble { padding: 9px 12px; border-radius: 12px; font-size: 13px; line-height: 1.55; max-width: 260px; }
+  .bubble-bot { background: var(--bg-secondary); color: var(--text); border-radius: 4px 12px 12px 12px; }
+  .bubble-user { background: var(--teal-mid); color: #fff; border-radius: 12px 4px 12px 12px; margin-left: auto; }
+  .msg-user { flex-direction: row-reverse; }
+  .msg-user .bubble { margin-left: auto; }
+  .action-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+  .chip { font-size: 11px; padding: 4px 10px; border-radius: 20px; background: var(--teal-bg); color: var(--teal-text); border: 0.5px solid rgba(0,0,0,0.08); cursor: pointer; }
+  .typing { display: flex; gap: 3px; align-items: center; padding: 10px 12px; background: var(--bg-secondary); border-radius: 4px 12px 12px 12px; width: fit-content; }
+  .dot-typing { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); animation: bounce 1.2s infinite; }
+  .dot-typing:nth-child(2) { animation-delay: 0.2s; }
+  .dot-typing:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-4px)} }
+
+  .intent-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--border); font-size: 13px; }
+  .intent-row:last-child { border-bottom: none; }
+  .intent-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .ic-teal { background: var(--teal-bg); color: var(--teal-text); }
+  .ic-blue { background: var(--blue-bg); color: var(--blue-text); }
+  .ic-amber { background: var(--amber-bg); color: var(--amber-text); }
+  .ic-purple { background: var(--purple-bg); color: var(--purple-text); }
+  .intent-label { flex: 1; color: var(--text); }
+  .intent-pct { font-size: 12px; font-weight: 500; color: var(--text-muted); }
+  .intent-bar-wrap { width: 80px; height: 4px; background: var(--bg-secondary); border-radius: 2px; overflow: hidden; }
+  .intent-bar { height: 100%; border-radius: 2px; background: var(--teal-mid); }
+
+  .arch-row { display: flex; align-items: stretch; gap: 0; margin-bottom: 1.25rem; }
+  .arch-layer { flex: 1; }
+  .arch-cell { background: var(--bg-card); border: 0.5px solid var(--border); padding: 10px 12px; }
+  .arch-cell:first-child { border-radius: 8px 0 0 8px; }
+  .arch-cell:last-child { border-radius: 0 8px 8px 0; }
+  .arch-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 6px; }
+  .arch-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .arch-desc { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+  .arch-arrow { display: flex; align-items: center; padding: 0 4px; color: var(--text-light); font-size: 14px; }
+
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 1.25rem; }
+  .metric { background: var(--bg-secondary); border-radius: 8px; padding: 10px 12px; }
+  .metric-label { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .metric-val { font-size: 22px; font-weight: 500; color: var(--text); }
+  .metric-sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+  .insight-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .insight-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 12px; padding: 14px; }
+  .insight-icon { font-size: 20px; color: var(--text-muted); margin-bottom: 8px; }
+  .insight-num { font-size: 22px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .insight-label { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  .note { font-size: 12px; color: var(--text-muted); padding: 9px 12px; background: var(--teal-bg); border-radius: 8px; line-height: 1.6; margin-top: 10px; }
+  .note strong { color: var(--teal-text); font-weight: 500; }
+
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .insight-strip { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <div class="nav-logo"><i class="ti ti-message-chatbot"></i></div>
+    <span class="nav-title">WeWork India · AI Opportunities</span>
+  </a>
+  <a class="nav-back" href="index.html"><i class="ti ti-arrow-left" style="font-size:13px"></i> All demos</a>
+</nav>
+
+<div class="page">
+
+  <div class="page-hd">
+    <div class="page-eyebrow"><span class="live-dot"></span> Concept prototype · Member experience</div>
+    <div class="page-title">WorkPal</div>
+    <div class="page-sub">An agentic AI assistant built into the WeWork app. Handles support, room bookings, service requests, and community discovery — conversationally, without a human in the loop for routine tasks.</div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-label">Queries automated</div>
+      <div class="metric-val">64%</div>
+      <div class="metric-sub">no human needed</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Avg resolution time</div>
+      <div class="metric-val">38s</div>
+      <div class="metric-sub">vs 4.2 min (human)</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Member CSAT</div>
+      <div class="metric-val">4.7</div>
+      <div class="metric-sub">out of 5.0</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Support cost saved</div>
+      <div class="metric-val">₹18L</div>
+      <div class="metric-sub">per month (est.)</div>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <div style="display:flex;flex-direction:column;gap:1.25rem">
+      <div class="card">
+        <div class="card-hd">WorkPal chat <span class="card-hd-sub">member view</span></div>
+        <div class="chat-window">
+          <div class="msg">
+            <div class="msg-avatar av-bot"><i class="ti ti-message-chatbot" style="font-size:13px"></i></div>
+            <div>
+              <div class="bubble bubble-bot">Hi Manoj 👋 I'm WorkPal. How can I help you today?</div>
+              <div class="action-chips">
+                <span class="chip">Book a room</span>
+                <span class="chip">Report an issue</span>
+                <span class="chip">Find an event</span>
+              </div>
+            </div>
+          </div>
+          <div class="msg msg-user">
+            <div class="msg-avatar av-user">MK</div>
+            <div class="bubble bubble-user">I need a quiet meeting room for 4 people tomorrow at 2pm</div>
+          </div>
+          <div class="msg">
+            <div class="msg-avatar av-bot"><i class="ti ti-message-chatbot" style="font-size:13px"></i></div>
+            <div class="bubble bubble-bot">Found 3 rooms at Prestige Tech Park for tomorrow 2–3 PM. <strong>Maple (4 pax)</strong> and <strong>Cedar (6 pax)</strong> are available. Both have a display and whiteboard. Which works?</div>
+          </div>
+          <div class="msg msg-user">
+            <div class="msg-avatar av-user">MK</div>
+            <div class="bubble bubble-user">Maple please</div>
+          </div>
+          <div class="msg">
+            <div class="msg-avatar av-bot"><i class="ti ti-message-chatbot" style="font-size:13px"></i></div>
+            <div class="bubble bubble-bot">Done ✓ Maple booked for Jun 9, 2–3 PM. Calendar invite sent. Anything else?</div>
+          </div>
+          <div class="msg">
+            <div class="msg-avatar av-bot"><i class="ti ti-message-chatbot" style="font-size:13px"></i></div>
+            <div>
+              <div class="bubble bubble-bot" style="background:var(--teal-bg);color:var(--teal-text)">You also have a GenAI Roundtable tonight at 6 PM — 4 of your matches are attending. Want me to add it to your calendar?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd">Top intents handled</div>
+        <div class="intent-row">
+          <div class="intent-icon ic-teal"><i class="ti ti-calendar"></i></div>
+          <div class="intent-label">Room booking</div>
+          <div class="intent-bar-wrap"><div class="intent-bar" style="width:88%"></div></div>
+          <div class="intent-pct">34%</div>
+        </div>
+        <div class="intent-row">
+          <div class="intent-icon ic-blue"><i class="ti ti-tool"></i></div>
+          <div class="intent-label">Issue reporting</div>
+          <div class="intent-bar-wrap"><div class="intent-bar" style="width:60%"></div></div>
+          <div class="intent-pct">23%</div>
+        </div>
+        <div class="intent-row">
+          <div class="intent-icon ic-amber"><i class="ti ti-file-invoice"></i></div>
+          <div class="intent-label">Billing & invoices</div>
+          <div class="intent-bar-wrap"><div class="intent-bar" style="width:44%"></div></div>
+          <div class="intent-pct">17%</div>
+        </div>
+        <div class="intent-row">
+          <div class="intent-icon ic-purple"><i class="ti ti-users"></i></div>
+          <div class="intent-label">Events & community</div>
+          <div class="intent-bar-wrap"><div class="intent-bar" style="width:36%"></div></div>
+          <div class="intent-pct">14%</div>
+        </div>
+        <div class="intent-row">
+          <div class="intent-icon ic-teal"><i class="ti ti-package"></i></div>
+          <div class="intent-label">Service requests</div>
+          <div class="intent-bar-wrap"><div class="intent-bar" style="width:30%"></div></div>
+          <div class="intent-pct">12%</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:1.25rem">
+
+      <div class="card">
+        <div class="card-hd">How WorkPal works <span class="card-hd-sub">agent architecture</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;gap:6px">
+            <div style="flex:1;background:var(--bg-secondary);border-radius:8px;padding:10px 12px">
+              <div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:4px">Member input</div>
+              <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px">Natural language</div>
+              <div style="font-size:11px;color:var(--text-muted)">Text or voice via WeWork app</div>
+            </div>
+          </div>
+          <div style="text-align:center;color:var(--text-light);font-size:14px"><i class="ti ti-arrow-down"></i></div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <div style="flex:1;background:var(--teal-bg);border-radius:8px;padding:10px 12px">
+              <div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--teal-text);margin-bottom:4px">Intent + slot filling</div>
+              <div style="font-size:13px;font-weight:500;color:var(--teal-text);margin-bottom:3px">LLM orchestrator</div>
+              <div style="font-size:11px;color:var(--teal-text);opacity:0.8">Classifies intent, extracts entities, routes to tool</div>
+            </div>
+          </div>
+          <div style="text-align:center;color:var(--text-light);font-size:14px"><i class="ti ti-arrow-down"></i></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px">
+              <div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:4px">Tool calls</div>
+              <div style="font-size:12px;color:var(--text);line-height:1.5">Booking API · Helpdesk · Billing · Events · Member graph</div>
+            </div>
+            <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px">
+              <div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:4px">Guardrails</div>
+              <div style="font-size:12px;color:var(--text);line-height:1.5">Escalate if low confidence · Privacy filters · Audit log</div>
+            </div>
+          </div>
+          <div style="text-align:center;color:var(--text-light);font-size:14px"><i class="ti ti-arrow-down"></i></div>
+          <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px">
+            <div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:4px">Response + proactive nudge</div>
+            <div style="font-size:12px;color:var(--text);line-height:1.5">Confirms action · Surfaces relevant next steps (CommunityGraph, events, service upsells)</div>
+          </div>
+        </div>
+        <div class="note" style="margin-top:12px"><strong>PM proof point:</strong> Sparky/Squiggly at Walmart uses the same agentic pattern — LLM orchestrator + tool calls + escalation rules — for Walmart CS associates. WorkPal is the member-facing equivalent.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd">PM metrics to track <span class="card-hd-sub">north star + levers</span></div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="padding:10px 12px;background:var(--teal-bg);border-radius:8px">
+            <div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--teal-text);margin-bottom:4px">North star</div>
+            <div style="font-size:13px;font-weight:500;color:var(--teal-text)">% of member intents resolved without human escalation</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div style="padding:8px 10px;background:var(--bg-secondary);border-radius:8px;font-size:12px;color:var(--text-muted)"><strong style="color:var(--text);font-weight:500;display:block;margin-bottom:3px">Efficiency</strong>Avg resolution time · Escalation rate · Cost/query</div>
+            <div style="padding:8px 10px;background:var(--bg-secondary);border-radius:8px;font-size:12px;color:var(--text-muted)"><strong style="color:var(--text);font-weight:500;display:block;margin-bottom:3px">Experience</strong>CSAT per intent · Retry rate · Fallback frequency</div>
+            <div style="padding:8px 10px;background:var(--bg-secondary);border-radius:8px;font-size:12px;color:var(--text-muted)"><strong style="color:var(--text);font-weight:500;display:block;margin-bottom:3px">Retention</strong>MAU on WorkPal · Sessions/member/month</div>
+            <div style="padding:8px 10px;background:var(--bg-secondary);border-radius:8px;font-size:12px;color:var(--text-muted)"><strong style="color:var(--text);font-weight:500;display:block;margin-bottom:3px">Revenue</strong>Upsell conversion via proactive nudges</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="insight-strip">
+    <div class="insight-card">
+      <div class="insight-icon"><i class="ti ti-robot"></i></div>
+      <div class="insight-num">64%</div>
+      <div class="insight-label">Of routine member queries can be fully automated — booking, billing, issues, events</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon"><i class="ti ti-clock"></i></div>
+      <div class="insight-num">7×</div>
+      <div class="insight-label">Faster resolution vs. human support — 38 seconds vs 4.2 minutes average</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon"><i class="ti ti-trending-up"></i></div>
+      <div class="insight-num">₹18L</div>
+      <div class="insight-label">Estimated monthly support cost reduction at WeWork India's current member scale</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
