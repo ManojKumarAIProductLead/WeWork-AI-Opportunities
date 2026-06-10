@@ -3,221 +3,227 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WeWork India — AI Opportunities</title>
+<title>WeWork India — AI Strategy & Opportunities</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="theme.css">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #f7f6f3; --bg-card: #ffffff; --bg-secondary: #f1efe8;
-    --text: #1a1a1a; --text-muted: #5f5e5a; --text-light: #888780;
-    --border: rgba(0,0,0,0.1);
-    --blue: #185FA5; --blue-bg: #e6f1fb; --blue-text: #0c447c;
-    --purple: #534AB7; --purple-bg: #EEEDFE; --purple-text: #3C3489;
-    --teal: #0F6E56; --teal-mid: #1D9E75; --teal-bg: #E1F5EE; --teal-text: #085041;
-    --green-bg: #eaf3de; --green-text: #27500a;
-    --warn-bg: #faeeda; --warn-text: #633806;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1a1a18; --bg-card: #242422; --bg-secondary: #2e2e2c;
-      --text: #f0ede8; --text-muted: #b4b2a9; --text-light: #888780;
-      --border: rgba(255,255,255,0.1);
-      --blue: #378ADD; --blue-bg: #042C53; --blue-text: #B5D4F4;
-      --purple: #7F77DD; --purple-bg: #26215C; --purple-text: #CECBF6;
-      --teal: #5DCAA5; --teal-mid: #1D9E75; --teal-bg: #04342C; --teal-text: #9FE1CB;
-      --green-bg: #173404; --green-text: #C0DD97;
-      --warn-bg: #412402; --warn-text: #FAC775;
-    }
-  }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-
-  nav { background: var(--bg-card); border-bottom: 0.5px solid var(--border); padding: 0 2rem; display: flex; align-items: center; height: 56px; }
-  .nav-logo { width: 28px; height: 28px; border-radius: 6px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #fff; margin-right: 10px; }
-  .nav-title { font-size: 15px; font-weight: 500; color: var(--text); }
-
-  .hero { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 2.5rem; }
-  .hero-eyebrow { font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
-  .hero-title { font-size: 36px; font-weight: 500; color: var(--text); line-height: 1.2; margin-bottom: 16px; }
-  .hero-title span { color: var(--blue); }
-  .hero-desc { font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
-  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
-  .tag { font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 0.5px solid var(--border); color: var(--text-muted); background: var(--bg-card); }
-
-  .section { max-width: 720px; margin: 0 auto; padding: 0 2rem 3rem; }
-  .section-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem; padding-bottom: 8px; border-bottom: 0.5px solid var(--border); }
-
-  .proto-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1rem; }
-  .proto-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 14px; }
-  .proto-num { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; flex-shrink: 0; margin-top: 2px; }
-  .num-blue   { background: var(--blue-bg);   color: var(--blue-text); }
-  .num-purple { background: var(--purple-bg); color: var(--purple-text); }
-  .num-teal   { background: var(--teal-bg);   color: var(--teal-text); }
-  .proto-badge { font-size: 10px; padding: 3px 9px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
-  .badge-live { background: var(--green-bg); color: var(--green-text); }
-  .proto-name { font-size: 19px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
-  .proto-tagline { font-size: 13px; color: var(--text-muted); }
-  .proto-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; }
-  .proto-features { list-style: none; margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 7px; }
-  .proto-features li { font-size: 13px; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
-  .proto-features li i { margin-top: 2px; flex-shrink: 0; font-size: 14px; }
-  .feat-blue   i { color: var(--blue); }
-  .feat-purple i { color: var(--purple); }
-  .feat-teal   i { color: var(--teal-mid); }
-  .proto-insight { border-radius: 8px; padding: 10px 14px; margin-bottom: 1.25rem; font-size: 13px; line-height: 1.55; }
-  .insight-blue   { background: var(--blue-bg);   color: var(--blue-text); }
-  .insight-purple { background: var(--purple-bg); color: var(--purple-text); }
-  .insight-teal   { background: var(--teal-bg);   color: var(--teal-text); }
-  .proto-insight strong { font-weight: 500; }
-  .proto-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 8px; color: #fff; text-decoration: none; transition: opacity 0.15s; }
-  .btn-blue   { background: var(--blue); }
-  .btn-purple { background: var(--purple); }
-  .btn-teal   { background: var(--teal-mid); }
-  .btn-primary:hover { opacity: 0.85; }
-  .btn-secondary { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; padding: 9px 18px; border-radius: 8px; background: var(--bg-secondary); color: var(--text-muted); text-decoration: none; border: 0.5px solid var(--border); transition: background 0.15s; }
-  .btn-secondary:hover { background: var(--bg-card); color: var(--text); }
-
-  .coming-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
-  .coming-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; }
-  .coming-icon { font-size: 20px; color: var(--text-light); margin-bottom: 8px; }
-  .coming-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-  .coming-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-  .coming-pill { display: inline-block; margin-top: 8px; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--warn-bg); color: var(--warn-text); }
-
-  footer { border-top: 0.5px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 12px; color: var(--text-light); }
-  footer a { color: var(--blue); text-decoration: none; }
+  .hero{max-width:980px;margin:0 auto;padding:3.5rem 2rem 2rem}
+  .hero-title{font-size:34px;font-weight:500;line-height:1.2;margin-bottom:14px}
+  .hero-title span{color:var(--blue)}
+  .hero-desc{font-size:16px;color:var(--text-muted);line-height:1.7;max-width:680px;margin-bottom:1.5rem}
+  .northstar{background:#1a1a1a;color:#f0ede8;border-radius:14px;padding:1.4rem 1.6rem;margin-bottom:1rem}
+  .northstar .ns-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#9a988f;margin-bottom:8px}
+  .northstar .ns-text{font-size:19px;font-weight:500;line-height:1.45}
+  .northstar .ns-text em{font-style:normal;color:#85B7EB}
+  .kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:1rem}
+  .kpi{background:var(--bg-card);border:0.5px solid var(--border);border-radius:10px;padding:10px 12px}
+  .kpi-name{font-size:11px;color:var(--text-muted);line-height:1.4;margin-bottom:4px}
+  .kpi-icon{font-size:16px;color:var(--blue);margin-bottom:6px}
+  .pillar{background:var(--bg-card);border:0.5px solid var(--border);border-radius:14px;padding:1.4rem;margin-bottom:10px}
+  .pillar-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .pillar-num{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;flex-shrink:0}
+  .pillar-name{font-size:17px;font-weight:500}
+  .pillar-who{font-size:12px;color:var(--text-muted)}
+  .pillar-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+  .pg-cell{background:var(--bg-secondary);border-radius:8px;padding:10px 12px}
+  .pg-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:5px}
+  .pg-text{font-size:12.5px;color:var(--text);line-height:1.55}
+  .pillar-kpi{font-size:12px;padding:8px 12px;border-radius:8px;line-height:1.5}
+  .seg-table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .seg-table th{font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);text-align:left;padding:8px 10px;border-bottom:0.5px solid var(--border);font-weight:500}
+  .seg-table td{padding:9px 10px;border-bottom:0.5px solid var(--border);color:var(--text-muted);line-height:1.5;vertical-align:top}
+  .seg-table td:first-child{color:var(--text);font-weight:500;white-space:nowrap}
+  .seg-table tr:last-child td{border-bottom:none}
+  .demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:10px}
+  .demo-card{background:var(--bg-card);border:0.5px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;display:flex;flex-direction:column}
+  .demo-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .demo-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .demo-badge{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:500}
+  .b-live{background:var(--green-bg);color:var(--green-text)}
+  .b-new{background:var(--amber-bg);color:var(--amber-text)}
+  .demo-name{font-size:15px;font-weight:500;margin-bottom:3px}
+  .demo-who{font-size:11px;color:var(--text-light);margin-bottom:6px}
+  .demo-desc{font-size:12.5px;color:var(--text-muted);line-height:1.55;margin-bottom:10px;flex:1}
+  .demo-link{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:500;text-decoration:none;margin-top:auto}
+  .global-ref{background:var(--blue-bg);border-radius:12px;padding:1.1rem 1.3rem;font-size:13.5px;color:var(--blue-text);line-height:1.65}
+  .global-ref strong{font-weight:500}
+  .feas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .feas-card{background:var(--bg-card);border:0.5px solid var(--border);border-radius:10px;padding:12px 14px}
+  .feas-q{font-size:12px;font-weight:500;color:var(--text);margin-bottom:4px}
+  .feas-a{font-size:12px;color:var(--text-muted);line-height:1.55}
+  @media(max-width:760px){.kpi-strip{grid-template-columns:repeat(3,1fr)}.pillar-grid{grid-template-columns:1fr}.feas{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">MK</div>
-  <span class="nav-title">Manoj Kumar · AI Product Portfolio</span>
+  <a class="nav-brand" href="index.html">
+    <div class="nav-logo">MK</div>
+    <span class="nav-title">Manoj Kumar · AI Product Strategy for WeWork India</span>
+  </a>
 </nav>
 
 <div class="hero">
-  <div class="hero-eyebrow">AI Product Portfolio</div>
-  <div class="hero-title">AI opportunities for<br><span>WeWork India</span></div>
-  <div class="hero-desc">AI product concepts and working prototypes exploring how WeWork India can embed intelligence across its Workspace-as-a-Service stack — from enterprise analytics to member experience to operational efficiency.</div>
-  <div class="hero-tags">
-    <span class="tag">Workspace-as-a-Service</span>
-    <span class="tag">Enterprise AI</span>
-    <span class="tag">Occupancy intelligence</span>
-    <span class="tag">Member experience</span>
-    <span class="tag">GenAI agents</span>
-    <span class="tag">India GCC market</span>
+  <div class="page-eyebrow">Product · Technology · AI — Strategy Pitch</div>
+  <div class="hero-title">Workspace-as-a-Service,<br><span>powered by an AI-native layer</span></div>
+  <div class="hero-desc">WeWork India is pivoting from renting desks to operating workplaces. This page lays out a focused, number-driven AI strategy: which business KPIs we move, the three pillars we organize around, who each one serves, and a working prototype for every bet. Built feasible-first — every idea wraps systems WeWork already runs.</div>
+
+  <div class="northstar">
+    <div class="ns-label">North star</div>
+    <div class="ns-text">Everything a workplace can offer should be <em>digitized, intelligent, and commoditized</em> — sold as a service, measured per seat and per square foot.</div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-icon"><i class="ti ti-currency-rupee"></i></div><div class="kpi-name">Revenue per seat</div></div>
+    <div class="kpi"><div class="kpi-icon"><i class="ti ti-building"></i></div><div class="kpi-name">Revenue per sq ft per center</div></div>
+    <div class="kpi"><div class="kpi-icon"><i class="ti ti-users"></i></div><div class="kpi-name">Member count & occupancy</div></div>
+    <div class="kpi"><div class="kpi-icon"><i class="ti ti-repeat"></i></div><div class="kpi-name">Retention & churn reduction</div></div>
+    <div class="kpi"><div class="kpi-icon"><i class="ti ti-file-certificate"></i></div><div class="kpi-name">Long-term leasing mix</div></div>
+    <div class="kpi"><div class="kpi-icon"><i class="ti ti-trending-up"></i></div><div class="kpi-name">Avg ticket size (member LTV)</div></div>
   </div>
 </div>
 
-<div class="section">
-  <div class="section-label">Live prototypes</div>
+<div class="page">
 
-  <div class="proto-card">
-    <div class="proto-header">
-      <div style="display:flex;align-items:flex-start;gap:12px">
-        <div class="proto-num num-blue">1</div>
-        <div>
-          <div class="proto-name">SpaceIQ</div>
-          <div class="proto-tagline">Enterprise workspace intelligence dashboard</div>
-        </div>
+  <div class="section-label">Who we serve — segments × SKUs</div>
+  <div class="card" style="margin-bottom:1rem">
+    <table class="seg-table">
+      <tr><th>Segment</th><th>Today's SKUs</th><th>Their unmet need</th><th>AI lever</th></tr>
+      <tr><td>Individual professionals</td><td>Day Pass, Day Pass+</td><td>Frictionless booking, a reason to come back, network value</td><td>WorkPal hub · CommunityGraph</td></tr>
+      <tr><td>Small teams (2–10)</td><td>All Access, hourly BPO</td><td>Predictable space when needed, simple billing</td><td>WorkPal · SmartPass</td></tr>
+      <tr><td>Startups (10–50 seats)</td><td>Private offices, All Access</td><td>Flex up/down without renegotiation, services à la carte</td><td>DealDesk seat-flex · SenseSpace</td></tr>
+      <tr><td>GCCs & enterprise (50–500+)</td><td>Managed offices, custom builds</td><td>Utilization visibility, cost benchmarking, strategic partner not landlord</td><td>SpaceIQ · DealDesk · LocationIQ</td></tr>
+    </table>
+  </div>
+
+  <div class="section-label">Three pillars — problem → user → solution → KPI</div>
+
+  <div class="pillar">
+    <div class="pillar-top">
+      <div class="pillar-num" style="background:var(--teal-bg);color:var(--teal-text)">1</div>
+      <div>
+        <div class="pillar-name">Member Experience & Monetization</div>
+        <div class="pillar-who">For members — individuals to startups · Owned by Product & Community teams</div>
       </div>
-      <span class="proto-badge badge-live"><i class="ti ti-check" style="font-size:10px;vertical-align:-1px"></i> Live</span>
     </div>
-    <div class="proto-body">Enterprise clients managing hundreds of seats across multiple WeWork centers have zero visibility into how their space is actually being used. SpaceIQ gives GCCs and MNCs a real-time analytics layer — seat utilization by center, cost benchmarking against peers, AI-generated capacity recommendations, and demand heat maps — turning WeWork from a landlord into a strategic workspace partner.</div>
-    <ul class="proto-features feat-blue">
-      <li><i class="ti ti-chart-bar"></i>Center-by-center utilization tracking across Bengaluru, Gurugram, Mumbai, Chennai, Hyderabad</li>
-      <li><i class="ti ti-sparkles"></i>AI recommendations panel — flags underutilized centers, capacity risks, cost benchmarks vs peer GCCs</li>
-      <li><i class="ti ti-layout-grid"></i>Day-of-week heat map to inform anchor-day and hybrid attendance policies</li>
-      <li><i class="ti ti-trending-up"></i>Quarter-on-quarter trends: utilization, cost/seat, NPS, service requests</li>
-      <li><i class="ti ti-chart-line"></i>Interactive 6-month utilization trend chart across all centers</li>
-    </ul>
-    <div class="proto-insight insight-blue"><strong>Business case:</strong> Every enterprise client that can see their underutilized seats is more likely to right-size at renewal and expand where genuinely needed. Reduces churn, enables data-driven upsell. Value-added services are ~14–15% of WeWork India's revenue — SpaceIQ is the intelligence layer that makes them defensible.</div>
-    <div class="proto-actions">
-      <a class="btn-primary btn-blue" href="spaceiq-dashboard.html" target="_blank"><i class="ti ti-eye" style="font-size:15px"></i> Preview dashboard</a>
-      <a class="btn-secondary" href="https://github.com/ManojKumarAIProductLead/WeWork-AI-Opportunities/blob/main/spaceiq-dashboard.html" target="_blank"><i class="ti ti-brand-github" style="font-size:15px"></i> View source</a>
+    <div class="pillar-grid">
+      <div class="pg-cell"><div class="pg-label">Problem</div><div class="pg-text">Servicing is fragmented across app, front desk, and email. Value-added services go undiscovered. Community is events-only, not a network.</div></div>
+      <div class="pg-cell"><div class="pg-label">Solution bets</div><div class="pg-text"><strong>WorkPal</strong> — one-stop agentic hub for every member need + contextual cross-sell. <strong>CommunityGraph</strong> — AI member matching as a retention moat.</div></div>
+      <div class="pg-cell"><div class="pg-label">Why AI wins here</div><div class="pg-text">Intent understanding + member context = each interaction becomes a service and a sales channel at zero marginal cost.</div></div>
     </div>
+    <div class="pillar-kpi" style="background:var(--teal-bg);color:var(--teal-text)"><strong>KPIs moved:</strong> retention/churn · average ticket size (LTV) · VAS attach rate</div>
   </div>
 
-  <div class="proto-card">
-    <div class="proto-header">
-      <div style="display:flex;align-items:flex-start;gap:12px">
-        <div class="proto-num num-purple">2</div>
-        <div>
-          <div class="proto-name">CommunityGraph</div>
-          <div class="proto-tagline">AI-powered member matching and connections</div>
-        </div>
+  <div class="pillar">
+    <div class="pillar-top">
+      <div class="pillar-num" style="background:var(--blue-bg);color:var(--blue-text)">2</div>
+      <div>
+        <div class="pillar-name">Operational Excellence</div>
+        <div class="pillar-who">For internal teams — Sales/BD, Community Ops, Finance · Owned by Revenue & Ops teams</div>
       </div>
-      <span class="proto-badge badge-live"><i class="ti ti-check" style="font-size:10px;vertical-align:-1px"></i> Live</span>
     </div>
-    <div class="proto-body">WeWork's original promise was community — but today it's mostly just events. CommunityGraph adds an AI matching layer that surfaces the right members to connect with based on role, skills, domain, attendance patterns, and shared interests — turning the physical co-presence of thousands of professionals into a genuine, defensible network effect.</div>
-    <ul class="proto-features feat-purple">
-      <li><i class="ti ti-sparkles"></i>AI match scoring with explainable reasoning — not just tags, but narrative "why this person" context</li>
-      <li><i class="ti ti-map-pin"></i>Location-aware suggestions using check-in data — surfaces people you're likely to physically encounter</li>
-      <li><i class="ti ti-calendar"></i>Curated event recommendations showing which matches are already attending</li>
-      <li><i class="ti ti-users"></i>Member cluster insights — dominant skill groups, collaboration activity, cross-company intros</li>
-      <li><i class="ti ti-shield"></i>Privacy-first — matching uses behavioral signals, never personal data</li>
-    </ul>
-    <div class="proto-insight insight-purple"><strong>Business case:</strong> Members who form meaningful connections renew at significantly higher rates. CommunityGraph creates a data asset — a professional graph across WeWork India's 100,000+ desk network — that no competitor can replicate without the same physical footprint.</div>
-    <div class="proto-actions">
-      <a class="btn-primary btn-purple" href="communitygraph.html" target="_blank"><i class="ti ti-eye" style="font-size:15px"></i> Preview concept</a>
-      <a class="btn-secondary" href="https://github.com/ManojKumarAIProductLead/WeWork-AI-Opportunities/blob/main/communitygraph.html" target="_blank"><i class="ti ti-brand-github" style="font-size:15px"></i> View source</a>
+    <div class="pillar-grid">
+      <div class="pg-cell"><div class="pg-label">Problem</div><div class="pg-text">Pipeline hygiene, quotes, contracts, renewals, seat changes, and billing are manual and CRM-bound. Ops teams react to tickets instead of anticipating them.</div></div>
+      <div class="pg-cell"><div class="pg-label">Solution bets</div><div class="pg-text"><strong>DealDesk</strong> — AI agents wrapping the existing CRM/CPQ/billing stack with human approval gates. <strong>SmartPass + SenseSpace</strong> — physical signals automating ops workflows.</div></div>
+      <div class="pg-cell"><div class="pg-label">Why AI wins here</div><div class="pg-text">We don't replace Salesforce — we wrap it. Agents do the drafting, chasing, and reconciling; humans approve. Fast to ship, low integration risk.</div></div>
     </div>
+    <div class="pillar-kpi" style="background:var(--blue-bg);color:var(--blue-text)"><strong>KPIs moved:</strong> sales cycle time · cost-to-serve per seat · renewal lead time · long-term leasing mix</div>
   </div>
 
-  <div class="proto-card">
-    <div class="proto-header">
-      <div style="display:flex;align-items:flex-start;gap:12px">
-        <div class="proto-num num-teal">3</div>
-        <div>
-          <div class="proto-name">WorkPal</div>
-          <div class="proto-tagline">Agentic member assistant for the WeWork app</div>
-        </div>
+  <div class="pillar">
+    <div class="pillar-top">
+      <div class="pillar-num" style="background:var(--amber-bg);color:var(--amber-text)">3</div>
+      <div>
+        <div class="pillar-name">Space & Asset Intelligence</div>
+        <div class="pillar-who">For enterprise clients + Supply/Real-Estate & Workspace Design teams</div>
       </div>
-      <span class="proto-badge badge-live"><i class="ti ti-check" style="font-size:10px;vertical-align:-1px"></i> Live</span>
     </div>
-    <div class="proto-body">Member support at WeWork scales linearly with headcount today. WorkPal is a conversational AI agent embedded in the WeWork app that handles room bookings, issue reporting, billing queries, event discovery, and service requests — resolving 64% of intents without a human, in under 40 seconds on average.</div>
-    <ul class="proto-features feat-teal">
-      <li><i class="ti ti-message-chatbot"></i>Conversational interface handling the top 5 member intent categories end-to-end</li>
-      <li><i class="ti ti-settings-automation"></i>Agentic architecture — LLM orchestrator + tool calls to booking, helpdesk, billing, and events APIs</li>
-      <li><i class="ti ti-shield-check"></i>Escalation guardrails — auto-routes to human when confidence is low</li>
-      <li><i class="ti ti-sparkles"></i>Proactive nudges — surfaces community events and matches during conversations</li>
-      <li><i class="ti ti-chart-bar"></i>PM metrics framework — north star, efficiency, experience, and revenue levers</li>
-    </ul>
-    <div class="proto-insight insight-teal"><strong>Business case:</strong> At WeWork India's current member scale, automating 64% of support queries saves an estimated ₹18L/month in support costs while improving CSAT. The same agentic pattern powers Sparky/Squiggly at Walmart — a production-shipped proof point.</div>
-    <div class="proto-actions">
-      <a class="btn-primary btn-teal" href="workpal.html" target="_blank"><i class="ti ti-eye" style="font-size:15px"></i> Preview concept</a>
-      <a class="btn-secondary" href="https://github.com/ManojKumarAIProductLead/WeWork-AI-Opportunities/blob/main/workpal.html" target="_blank"><i class="ti ti-brand-github" style="font-size:15px"></i> View source</a>
+    <div class="pillar-grid">
+      <div class="pg-cell"><div class="pg-label">Problem</div><div class="pg-text">Enterprises can't see how their space is used. WeWork's own expansion decisions lean on relationships and gut feel. Physical signals (occupancy, energy, environment) are uncaptured.</div></div>
+      <div class="pg-cell"><div class="pg-label">Solution bets</div><div class="pg-text"><strong>SpaceIQ</strong> — utilization analytics for enterprise clients. <strong>LocationIQ</strong> — ML/GIS site-selection scoring, refreshed monthly. <strong>SenseSpace</strong> — sensor layer feeding both.</div></div>
+      <div class="pg-cell"><div class="pg-label">Why AI wins here</div><div class="pg-text">The data (badge swipes, bookings, sensors, market signals) already exists or is cheap to capture. Models turn it into pricing power and capex discipline.</div></div>
+    </div>
+    <div class="pillar-kpi" style="background:var(--amber-bg);color:var(--amber-text)"><strong>KPIs moved:</strong> revenue per sq ft · enterprise retention · new-center ramp time · energy cost per sq ft</div>
+  </div>
+
+  <div class="section-label">Global reference point</div>
+  <div class="global-ref">
+    <strong>WeWork Global already validated the direction:</strong> WeWork Workplace (built with Yardi, ~600 companies and 75,000+ licenses by early 2024) proved enterprises will pay for space-management software, and the March 2024 global app update made the WeWork App a one-stop hub for booking, access, and workspace insights. WeWork India can leapfrog both — neither is AI-native. The pitch isn't "copy global" — it's "own the AI layer global hasn't built, tuned for India's GCC-heavy demand."
+  </div>
+
+  <div class="section-label">The portfolio — six bets, one prototype each</div>
+  <div class="demo-grid">
+
+    <div class="demo-card">
+      <div class="demo-top"><div class="demo-icon" style="background:var(--teal-bg);color:var(--teal-text)"><i class="ti ti-message-chatbot"></i></div><span class="demo-badge b-live">Live demo</span></div>
+      <div class="demo-name">WorkPal — Member Hub</div>
+      <div class="demo-who">Pillar 1 · Members (all segments)</div>
+      <div class="demo-desc">Agentic one-stop hub: support, bookings, billing, events, service requests — plus contextual cross-sell of value-added services in every conversation.</div>
+      <a class="demo-link" href="workpal.html" style="color:var(--teal-mid)">Open demo <i class="ti ti-arrow-right"></i></a>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-top"><div class="demo-icon" style="background:var(--purple-bg);color:var(--purple-text)"><i class="ti ti-network"></i></div><span class="demo-badge b-live">Live demo</span></div>
+      <div class="demo-name">CommunityGraph</div>
+      <div class="demo-who">Pillar 1 · Members + Community team</div>
+      <div class="demo-desc">AI member matching with explainable reasoning. Turns physical co-presence into a network effect competitors can't copy without the footprint.</div>
+      <a class="demo-link" href="communitygraph.html" style="color:var(--purple)">Open demo <i class="ti ti-arrow-right"></i></a>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-top"><div class="demo-icon" style="background:var(--blue-bg);color:var(--blue-text)"><i class="ti ti-briefcase"></i></div><span class="demo-badge b-live">Live demo</span></div>
+      <div class="demo-name">DealDesk — Sales & Revenue Agents</div>
+      <div class="demo-who">Pillar 2 · Sales/BD, Finance teams</div>
+      <div class="demo-desc">AI agents wrapping CRM/CPQ/billing: pipeline hygiene, quoting, contract & renewal drafting, real-time seat flex, billing reconciliation — with approval gates.</div>
+      <a class="demo-link" href="salesops.html" style="color:var(--blue)">Open demo <i class="ti ti-arrow-right"></i></a>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-top"><div class="demo-icon" style="background:var(--coral-bg);color:var(--coral-text)"><i class="ti ti-wifi"></i></div><span class="demo-badge b-live">Live demo</span></div>
+      <div class="demo-name">Phygital — SmartPass & SenseSpace</div>
+      <div class="demo-who">Pillars 2+3 · Members + Community Ops</div>
+      <div class="demo-desc">Two IoT bets: NFC/geofence frictionless access (SmartPass) and sensor-driven space ops (SenseSpace) — ghost-booking release, energy optimization, usage-based housekeeping.</div>
+      <a class="demo-link" href="phygital.html" style="color:var(--coral)">Open demo <i class="ti ti-arrow-right"></i></a>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-top"><div class="demo-icon" style="background:var(--blue-bg);color:var(--blue-text)"><i class="ti ti-chart-bar"></i></div><span class="demo-badge b-live">Live demo</span></div>
+      <div class="demo-name">SpaceIQ — Enterprise Analytics</div>
+      <div class="demo-who">Pillar 3 · Enterprise clients (GCCs)</div>
+      <div class="demo-desc">Utilization, cost benchmarking, and AI capacity recommendations for clients managing hundreds of seats. Turns WeWork into a strategic partner.</div>
+      <a class="demo-link" href="spaceiq-dashboard.html" style="color:var(--blue)">Open demo <i class="ti ti-arrow-right"></i></a>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-top"><div class="demo-icon" style="background:var(--amber-bg);color:var(--amber-text)"><i class="ti ti-map-pin"></i></div><span class="demo-badge b-live">Live demo</span></div>
+      <div class="demo-name">LocationIQ — Site Selection</div>
+      <div class="demo-who">Pillar 3 · Supply & Real-Estate team</div>
+      <div class="demo-desc">ML/GIS scoring of candidate micro-markets using mobility, enterprise density, and demand signals. A monthly-refresh study for high-stakes decisions — not a daily dashboard.</div>
+      <a class="demo-link" href="locationiq.html" style="color:var(--amber)">Open demo <i class="ti ti-arrow-right"></i></a>
+    </div>
+
+  </div>
+
+  <div class="section-label">Why this is feasible, not sky-throwing</div>
+  <div class="feas">
+    <div class="feas-card">
+      <div class="feas-q">Build on what exists</div>
+      <div class="feas-a">Every bet wraps current systems — the app, access control, CRM, badge data. No rip-and-replace. Agents draft; humans approve.</div>
+    </div>
+    <div class="feas-card">
+      <div class="feas-q">90-day pilot rhythm</div>
+      <div class="feas-a">Each prototype maps to a single-center or single-account pilot shippable in one quarter, with the 2 success measures defined on its demo page.</div>
+    </div>
+    <div class="feas-card">
+      <div class="feas-q">Sequenced by ROI confidence</div>
+      <div class="feas-a">Start where data exists today (WorkPal, SpaceIQ, DealDesk) → instrument the physical layer (Phygital) → compound into LocationIQ and CommunityGraph.</div>
     </div>
   </div>
 
-</div>
-
-<div class="section">
-  <div class="section-label">Coming soon</div>
-  <div class="coming-grid">
-    <div class="coming-card">
-      <div class="coming-icon"><i class="ti ti-adjustments"></i></div>
-      <div class="coming-name">FlexFill</div>
-      <div class="coming-desc">ML-driven dynamic pricing and demand prediction to optimize yield on on-demand desk inventory.</div>
-      <span class="coming-pill">In design</span>
-    </div>
-    <div class="coming-card">
-      <div class="coming-icon"><i class="ti ti-settings-automation"></i></div>
-      <div class="coming-name">ServiceOS</div>
-      <div class="coming-desc">AI operations layer for center managers to coordinate managed services — transport, F&B, workplace experience.</div>
-      <span class="coming-pill">In design</span>
-    </div>
-    <div class="coming-card">
-      <div class="coming-icon"><i class="ti ti-map-pin"></i></div>
-      <div class="coming-name">LocationIQ</div>
-      <div class="coming-desc">AI site-selection scoring using mobility data, enterprise cluster density, and demand signals for expansion decisions.</div>
-      <span class="coming-pill">In design</span>
-    </div>
-  </div>
 </div>
 
 <footer>
-  Built by <a href="https://www.linkedin.com/in/manojkumar-pm/" target="_blank">Manoj Kumar</a> · Director of Product Management · AI Product Leadership exploration
+  Built by <a href="https://www.linkedin.com/in/manojkumar-pm/" target="_blank">Manoj Kumar</a> · Director of Product Management · AI product strategy exploration for WeWork India
 </footer>
 
 </body>

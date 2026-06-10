@@ -24,6 +24,9 @@
     --border: rgba(0,0,0,0.12);
     --radius-md: 8px;
     --radius-lg: 12px;
+    --blue-bg: #e6f1fb;
+    --blue-text: #0c447c;
+    --text-light: #888780;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -40,6 +43,9 @@
       --text-success: #97c459;
       --text-danger: #f09595;
       --border: rgba(255,255,255,0.12);
+      --blue-bg: #042C53;
+      --blue-text: #B5D4F4;
+      --text-light: #888780;
     }
   }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg-secondary); color: var(--text-primary); min-height: 100vh; padding: 0; }
@@ -127,6 +133,13 @@
 </style>
 </head>
 <body>
+<nav style="background:var(--bg-card);border-bottom:0.5px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;margin:-1.5rem -1.5rem 0">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <div style="width:28px;height:28px;border-radius:7px;background:#185FA5;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff"><i class="ti ti-chart-bar"></i></div>
+    <span style="font-size:15px;font-weight:500;color:var(--text-primary)">WeWork India · AI Opportunities</span>
+  </a>
+  <a href="index.html" style="font-size:13px;color:var(--text-secondary);text-decoration:none;display:flex;align-items:center;gap:5px;padding:6px 12px;border:0.5px solid var(--border);border-radius:8px;background:var(--bg-secondary)"><i class="ti ti-arrow-left" style="font-size:13px"></i> All demos</a>
+</nav>
 <div class="page">
 
   <div class="topbar">
@@ -275,6 +288,43 @@
       <canvas id="utilChart" role="img" aria-label="Line chart showing monthly utilization across 5 WeWork India centers Jan–Jun. Bengaluru peaks at 87%, Hyderabad trends down to 41%.">Monthly utilization Jan–Jun: Bengaluru 87%, Gurugram 79%, Mumbai 71%, Chennai 58%, Hyderabad 41%.</canvas>
     </div>
     <div class="legend" id="chartLegend"></div>
+  </div>
+
+  <div style="font-size:11px;color:var(--text-light);letter-spacing:0.08em;text-transform:uppercase;margin:2rem 0 1rem;padding-bottom:8px;border-bottom:0.5px solid var(--border)">How it works — architecture</div>
+  <div class="card">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+      <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px"><div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:4px">1 · Signals</div><div style="font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:3px">Usage data</div><div style="font-size:11px;color:var(--text-secondary);line-height:1.5">Badge swipes · room bookings · SmartPass taps · SenseSpace sensors — already captured today</div></div>
+      <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px"><div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:4px">2 · Pipeline</div><div style="font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:3px">Aggregation</div><div style="font-size:11px;color:var(--text-secondary);line-height:1.5">Daily ETL into a per-client, per-center utilization warehouse</div></div>
+      <div style="background:var(--blue-bg);border-radius:8px;padding:10px 12px"><div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--blue-text);margin-bottom:4px">3 · Models</div><div style="font-size:13px;font-weight:500;color:var(--blue-text);margin-bottom:3px">Insights</div><div style="font-size:11px;color:var(--blue-text);line-height:1.5">Anomaly detection · capacity forecast · peer benchmarking · LLM-written recommendations</div></div>
+      <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px"><div style="font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);margin-bottom:4px">4 · Client view</div><div style="font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:3px">Dashboard + alerts</div><div style="font-size:11px;color:var(--text-secondary);line-height:1.5">Self-serve portal for client admins; proactive right-size nudges to account managers</div></div>
+    </div>
+  </div>
+
+  <div style="font-size:11px;color:var(--text-light);letter-spacing:0.08em;text-transform:uppercase;margin:2rem 0 1rem;padding-bottom:8px;border-bottom:0.5px solid var(--border)">Tech stack</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem">
+    <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--bg-secondary);color:var(--text-secondary);border:0.5px solid var(--border);font-family:ui-monospace,monospace">Data warehouse</span>
+    <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--bg-secondary);color:var(--text-secondary);border:0.5px solid var(--border);font-family:ui-monospace,monospace">dbt + Airflow</span>
+    <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--bg-secondary);color:var(--text-secondary);border:0.5px solid var(--border);font-family:ui-monospace,monospace">Anomaly detection</span>
+    <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--bg-secondary);color:var(--text-secondary);border:0.5px solid var(--border);font-family:ui-monospace,monospace">Forecasting (Prophet/GBM)</span>
+    <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--bg-secondary);color:var(--text-secondary);border:0.5px solid var(--border);font-family:ui-monospace,monospace">LLM insight narration</span>
+    <span style="font-size:11px;padding:3px 10px;border-radius:20px;background:var(--bg-secondary);color:var(--text-secondary);border:0.5px solid var(--border);font-family:ui-monospace,monospace">React dashboard</span>
+  </div>
+
+  <div style="font-size:11px;color:var(--text-light);letter-spacing:0.08em;text-transform:uppercase;margin:2rem 0 1rem;padding-bottom:8px;border-bottom:0.5px solid var(--border)">Success measures &amp; business case</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+    <div style="background:var(--blue-bg);border-radius:8px;padding:12px 14px">
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px;color:var(--blue-text);opacity:0.8">Measure 1 — retention</div>
+      <div style="font-size:14px;font-weight:500;margin-bottom:4px;color:var(--blue-text)">Enterprise account renewal rate</div>
+      <div style="font-size:12px;line-height:1.55;color:var(--blue-text);opacity:0.9">Target: clients with SpaceIQ access renew at a higher rate because they can see and act on the value of their footprint.</div>
+    </div>
+    <div style="background:var(--blue-bg);border-radius:8px;padding:12px 14px">
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px;color:var(--blue-text);opacity:0.8">Measure 2 — yield</div>
+      <div style="font-size:14px;font-weight:500;margin-bottom:4px;color:var(--blue-text)">Revenue per sq ft across the portfolio</div>
+      <div style="font-size:12px;line-height:1.55;color:var(--blue-text);opacity:0.9">Target: right-size nudges remove zombie inventory and redirect demand to high-occupancy centers, lifting effective yield.</div>
+    </div>
+  </div>
+  <div style="background:var(--bg-secondary);border-radius:8px;padding:11px 14px;font-size:13px;line-height:1.6;color:var(--text-secondary)">
+    <strong style="color:var(--text-primary);font-weight:500">Business case:</strong> SpaceIQ converts data WeWork already collects into a retention and pricing tool. Clients who see their utilization right-size confidently (removing zombie seats) and expand where they genuinely need to — making renewal conversations data-driven instead of adversarial. Value-added services are ~14–15% of WeWork India revenue; this is the intelligence layer that makes them defensible.
   </div>
 
 </div>

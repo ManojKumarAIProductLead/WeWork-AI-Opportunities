@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DealDesk — AI Sales & Revenue Agents · WeWork India</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="theme.css">
+<style>
+  .layout{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+  .agent-row{display:flex;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--border)}
+  .agent-row:last-child{border-bottom:none}
+  .agent-icon{width:32px;height:32px;border-radius:9px;background:var(--blue-bg);color:var(--blue-text);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+  .agent-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px}
+  .agent-task{font-size:12px;color:var(--text-muted);line-height:1.5}
+  .agent-gate{font-size:10px;padding:1px 7px;border-radius:20px;background:var(--amber-bg);color:var(--amber-text);margin-top:4px;display:inline-block}
+  .agent-auto{font-size:10px;padding:1px 7px;border-radius:20px;background:var(--green-bg);color:var(--green-text);margin-top:4px;display:inline-block}
+  .flow{display:flex;flex-direction:column;gap:6px}
+  .flow-step{display:flex;gap:10px;align-items:flex-start}
+  .flow-num{width:24px;height:24px;border-radius:50%;background:var(--blue-bg);color:var(--blue-text);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0}
+  .flow-text{font-size:12.5px;color:var(--text-muted);line-height:1.5;padding-top:2px}
+  .flow-text strong{color:var(--text);font-weight:500}
+  .flow-conn{margin-left:11px;height:8px;border-left:1.5px dashed var(--border)}
+  @media(max-width:760px){.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html"><div class="nav-logo" style="background:#185FA5"><i class="ti ti-briefcase" style="font-size:14px"></i></div><span class="nav-title">WeWork India · AI Opportunities</span></a>
+  <a class="nav-back" href="index.html"><i class="ti ti-arrow-left" style="font-size:13px"></i> All demos</a>
+</nav>
+
+<div class="page">
+
+  <div class="page-hd">
+    <div class="page-eyebrow">Pillar 2 · Operational Excellence · For Sales/BD & Finance teams</div>
+    <div class="page-title">DealDesk</div>
+    <div class="page-sub">A layer of AI agents that wrap WeWork's existing CRM, CPQ, and billing stack — automating the repetitive parts of the deal lifecycle (pipeline hygiene, quoting, contracts, renewals, seat changes, billing reconciliation) while keeping a human approval gate on every commercial commitment.</div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">Quote turnaround</div><div class="metric-val">4 hrs</div><div class="metric-sub">from 2–3 days</div></div>
+    <div class="metric"><div class="metric-label">Renewals flagged early</div><div class="metric-val">90d</div><div class="metric-sub">ahead, auto-drafted</div></div>
+    <div class="metric"><div class="metric-label">Billing exceptions auto-resolved</div><div class="metric-val">70%</div><div class="metric-sub">no finance touch</div></div>
+    <div class="metric"><div class="metric-label">Sales admin time saved</div><div class="metric-val">~11h</div><div class="metric-sub">per rep per week</div></div>
+  </div>
+
+  <div class="layout">
+    <div class="card">
+      <div class="card-hd">The agent crew <span class="card-hd-sub">wraps existing tools, doesn't replace them</span></div>
+      <div class="agent-row">
+        <div class="agent-icon"><i class="ti ti-filter"></i></div>
+        <div><div class="agent-name">Pipeline Agent</div><div class="agent-task">Keeps CRM clean — enriches inbound leads, flags stalled deals, drafts next-step nudges, summarizes account history before calls.</div><span class="agent-auto">Auto</span></div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-icon"><i class="ti ti-receipt"></i></div>
+        <div><div class="agent-name">Quote & CPQ Agent</div><div class="agent-task">Generates a priced proposal from a natural-language brief ("80 seats, Whitefield, 18-month term") using approved rate cards and discount guardrails.</div><span class="agent-gate">Human approval gate</span></div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-icon"><i class="ti ti-file-text"></i></div>
+        <div><div class="agent-name">Contract Agent</div><div class="agent-task">Drafts MSAs and order forms from templates, redlines against playbook, routes for e-sign, files back to CRM.</div><span class="agent-gate">Legal approval gate</span></div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-icon"><i class="ti ti-refresh"></i></div>
+        <div><div class="agent-name">Renewal Agent</div><div class="agent-task">Watches contract end-dates + SpaceIQ utilization, drafts renewal terms 90 days out, recommends right-size up/down.</div><span class="agent-gate">Human approval gate</span></div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-icon"><i class="ti ti-armchair"></i></div>
+        <div><div class="agent-name">Seat-Flex Agent</div><div class="agent-task">Handles real-time add/reduce seat requests from enterprise admins, checks inventory, computes proration, updates billing.</div><span class="agent-auto">Auto (within limits)</span></div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-icon"><i class="ti ti-coin"></i></div>
+        <div><div class="agent-name">Billing Recon Agent</div><div class="agent-task">Matches invoices to contracts + usage, auto-resolves common exceptions, escalates genuine disputes to finance with context.</div><span class="agent-auto">Auto</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd">Workflow — an enterprise expansion request</div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-num">1</div><div class="flow-text">Enterprise admin messages "we need 40 more seats at Prestige from next month" via WorkPal or email.</div></div>
+        <div class="flow-conn"></div>
+        <div class="flow-step"><div class="flow-num">2</div><div class="flow-text"><strong>Seat-Flex Agent</strong> checks live inventory in the booking system, confirms availability, computes prorated pricing from the contract's rate card.</div></div>
+        <div class="flow-conn"></div>
+        <div class="flow-step"><div class="flow-num">3</div><div class="flow-text"><strong>Quote Agent</strong> drafts an order-form amendment. If within the rep's discount authority → straight to the admin; if not → <strong>approval gate</strong> to the account owner.</div></div>
+        <div class="flow-conn"></div>
+        <div class="flow-step"><div class="flow-num">4</div><div class="flow-text">On e-sign, <strong>Contract Agent</strong> files the amendment to CRM and <strong>Billing Agent</strong> updates the next invoice automatically.</div></div>
+        <div class="flow-conn"></div>
+        <div class="flow-step"><div class="flow-num">5</div><div class="flow-text"><strong>Pipeline Agent</strong> logs the expansion as an upsell win and updates account health. Total human effort: one approval click.</div></div>
+      </div>
+      <div class="bizcase" style="background:var(--blue-bg);color:var(--blue-text);margin-top:12px">
+        <strong>The principle:</strong> agents do drafting, checking, and reconciling. Humans own every commercial commitment via approval gates. Low integration risk — agents read/write through existing CRM and billing APIs.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">System design</div>
+  <div class="card" style="margin-bottom:1rem">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <div class="arch-box"><div class="arch-label">Input channels</div><div class="arch-desc" style="color:var(--text)">WorkPal chat · email · enterprise admin portal · rep request</div></div>
+        <div class="arch-box"><div class="arch-label">Knowledge base</div><div class="arch-desc" style="color:var(--text)">Rate cards · discount playbook · contract templates · approval matrix</div></div>
+        <div class="arch-box"><div class="arch-label">Systems of record</div><div class="arch-desc" style="color:var(--text)">Salesforce CRM · CPQ · billing/ERP · booking & inventory · e-sign</div></div>
+      </div>
+      <div class="arch-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div class="arch-box" style="background:var(--blue-bg)"><div class="arch-label" style="color:var(--blue-text)">Agent orchestration layer</div><div class="arch-name" style="color:var(--blue-text)">LLM router + specialized agents + tool-calling</div><div class="arch-desc" style="color:var(--blue-text)">Each agent has scoped tool access (read/write APIs). A shared policy engine enforces discount limits, approval gates, and full audit logging on every action.</div></div>
+      <div class="arch-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="arch-box"><div class="arch-label">Human-in-the-loop</div><div class="arch-desc" style="color:var(--text)">Approval queue for quotes, contracts, renewals above threshold — one-click approve/edit</div></div>
+        <div class="arch-box"><div class="arch-label">Writes back to</div><div class="arch-desc" style="color:var(--text)">Same systems of record — no shadow data, full traceability</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Tech stack</div>
+  <div class="tags" style="margin-bottom:1.5rem">
+    <span class="tech-tag">LangGraph / agent framework</span><span class="tech-tag">Claude / GPT function-calling</span><span class="tech-tag">Salesforce APIs</span><span class="tech-tag">CPQ integration</span><span class="tech-tag">RAG over playbooks</span><span class="tech-tag">Policy/guardrail engine</span><span class="tech-tag">Audit log + observability</span>
+  </div>
+
+  <div class="section-label">Success measures & business case</div>
+  <div class="measure-grid">
+    <div class="measure-card" style="background:var(--blue-bg);color:var(--blue-text)">
+      <div class="measure-num">Measure 1 — velocity</div>
+      <div class="measure-title">Quote-to-signature cycle time</div>
+      <div class="measure-desc">Target: median enterprise quote turnaround from 2–3 days to under 4 hours; renewals initiated 90 days ahead instead of reactive.</div>
+    </div>
+    <div class="measure-card" style="background:var(--blue-bg);color:var(--blue-text)">
+      <div class="measure-num">Measure 2 — cost to serve</div>
+      <div class="measure-title">Sales + finance admin hours per closed seat</div>
+      <div class="measure-desc">Target: cut admin effort per deal ~40%, freeing reps to sell and finance to focus on genuine exceptions, not data entry.</div>
+    </div>
+  </div>
+  <div class="bizcase" style="background:var(--bg-secondary);color:var(--text-muted)">
+    <strong style="color:var(--text)">Business case:</strong> faster quotes lift win-rate on competitive enterprise deals; proactive renewals protect the long-term leasing base (a core KPI); automated billing recon reduces leakage and DSO. If ~11 hours/rep/week shifts from admin to selling, a 30-person commercial team reclaims the equivalent of 8 full-time sellers — at the cost of one quarter of agent build + integration.
+  </div>
+
+</div>
+
+<footer>Built by <a href="https://www.linkedin.com/in/manojkumar-pm/" target="_blank">Manoj Kumar</a> · Part of the <a href="index.html">WeWork India AI strategy</a></footer>
+</body>
+</html>

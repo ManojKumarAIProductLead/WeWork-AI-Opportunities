@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phygital — SmartPass & SenseSpace · WeWork India</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="theme.css">
+<style>
+  .idea-block{background:var(--bg-card);border:0.5px solid var(--border);border-radius:14px;padding:1.4rem;margin-bottom:1rem}
+  .idea-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .idea-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+  .idea-name{font-size:18px;font-weight:500}
+  .idea-tagline{font-size:12.5px;color:var(--text-muted)}
+  .idea-desc{font-size:13.5px;color:var(--text-muted);line-height:1.65;margin:10px 0 14px}
+  .mvp-tag{display:inline-block;font-size:10px;padding:2px 9px;border-radius:20px;background:var(--green-bg);color:var(--green-text);font-weight:500;margin-bottom:10px}
+  .flow-h{display:flex;align-items:stretch;gap:0;margin-bottom:12px;overflow-x:auto}
+  .flow-node{flex:1;min-width:120px;background:var(--bg-secondary);border-radius:8px;padding:10px 12px}
+  .flow-node .fn-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:4px}
+  .flow-node .fn-text{font-size:11.5px;color:var(--text);line-height:1.45}
+  .flow-h-arrow{display:flex;align-items:center;padding:0 6px;color:var(--text-light);font-size:16px;flex-shrink:0}
+  .measure-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 10px}
+  @media(max-width:760px){.measure-grid{grid-template-columns:1fr}.flow-h{flex-direction:column;gap:6px}.flow-h-arrow{transform:rotate(90deg);padding:2px 0}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html"><div class="nav-logo" style="background:#C2410C"><i class="ti ti-wifi" style="font-size:14px"></i></div><span class="nav-title">WeWork India · AI Opportunities</span></a>
+  <a class="nav-back" href="index.html"><i class="ti ti-arrow-left" style="font-size:13px"></i> All demos</a>
+</nav>
+
+<div class="page">
+
+  <div class="page-hd">
+    <div class="page-eyebrow">Pillars 2 + 3 · Phygital · For members + Community Ops teams</div>
+    <div class="page-title">Phygital — connecting the physical workspace</div>
+    <div class="page-sub">Two breakthrough-but-buildable bets that turn the physical space into real-time digital signals — one to make the member experience frictionless, one to make operations proactive. Each ships as a single-center MVP first.</div>
+  </div>
+
+  <!-- IDEA 1 -->
+  <div class="idea-block">
+    <div class="idea-head">
+      <div class="idea-icon" style="background:var(--coral-bg);color:var(--coral-text)"><i class="ti ti-nfc"></i></div>
+      <div>
+        <div class="idea-name">SmartPass</div>
+        <div class="idea-tagline">NFC + geofenced frictionless access, check-in, and pay</div>
+      </div>
+    </div>
+    <span class="mvp-tag">MVP: 1 center, ~8 weeks</span>
+    <div class="idea-desc">The phone becomes the key, the booking, and the wallet. Geofence detects arrival and auto-checks-in the member; NFC taps open turnstiles, meeting rooms, printers, and the café; everything settles to one monthly statement. No plastic cards, no front-desk queue, no "which room was I in?" — and every tap is a usage signal that feeds SpaceIQ and billing.</div>
+
+    <div class="card-hd" style="margin-bottom:8px">MVP system design</div>
+    <div class="flow-h">
+      <div class="flow-node"><div class="fn-label">Member phone</div><div class="fn-text">WeWork app · geofence (arrival) + NFC/HCE (tap)</div></div>
+      <div class="flow-h-arrow"><i class="ti ti-arrow-right"></i></div>
+      <div class="flow-node"><div class="fn-label">Edge — at the center</div><div class="fn-text">NFC readers on doors, rooms, printers, café POS</div></div>
+      <div class="flow-h-arrow"><i class="ti ti-arrow-right"></i></div>
+      <div class="flow-node" style="background:var(--coral-bg)"><div class="fn-label" style="color:var(--coral-text)">Access & event service</div><div class="fn-text" style="color:var(--coral-text)">Validates entitlement, logs event, emits usage signal</div></div>
+      <div class="flow-h-arrow"><i class="ti ti-arrow-right"></i></div>
+      <div class="flow-node"><div class="fn-label">Downstream</div><div class="fn-text">Auto check-in · consolidated billing · SpaceIQ utilization feed</div></div>
+    </div>
+    <div class="bizcase" style="background:var(--bg-secondary);color:var(--text-muted)"><strong style="color:var(--text)">Why it's feasible:</strong> NFC host-card-emulation and geofencing are standard mobile APIs; most WeWork access hardware already speaks to a controller. MVP wraps the existing access system with an event bus — no new turnstiles required.</div>
+
+    <div class="measure-grid">
+      <div class="measure-card" style="background:var(--coral-bg);color:var(--coral-text)"><div class="measure-num">Measure 1</div><div class="measure-title">Front-desk check-in load</div><div class="measure-desc">Target: 80% of entries self-service via SmartPass; reception time redirected to hospitality, not gatekeeping.</div></div>
+      <div class="measure-card" style="background:var(--coral-bg);color:var(--coral-text)"><div class="measure-num">Measure 2</div><div class="measure-title">Ancillary spend capture</div><div class="measure-desc">Target: +15% café/printer/meeting-room revenue captured per active member via one-tap pay vs. manual logging.</div></div>
+    </div>
+    <div class="bizcase" style="background:var(--coral-bg);color:var(--coral-text)"><strong>Business case:</strong> lifts average ticket size (a core KPI) by making ancillary spend frictionless, while the usage exhaust improves occupancy data quality for every other product. Hardware-light, so it scales center-by-center at low capex.</div>
+    <div class="tags" style="margin-top:12px"><span class="tech-tag">NFC HCE</span><span class="tech-tag">Geofencing API</span><span class="tech-tag">BLE beacons (fallback)</span><span class="tech-tag">Event bus (Kafka)</span><span class="tech-tag">Access controller API</span><span class="tech-tag">Wallet/payments SDK</span></div>
+  </div>
+
+  <!-- IDEA 2 -->
+  <div class="idea-block">
+    <div class="idea-head">
+      <div class="idea-icon" style="background:var(--teal-bg);color:var(--teal-text)"><i class="ti ti-broadcast"></i></div>
+      <div>
+        <div class="idea-name">SenseSpace</div>
+        <div class="idea-tagline">Sensor-driven, self-optimizing space operations</div>
+      </div>
+    </div>
+    <span class="mvp-tag">MVP: 1 floor, ~10 weeks</span>
+    <div class="idea-desc">Low-cost occupancy, air-quality, and energy sensors make the building self-aware. Empty-but-booked rooms auto-release after a grace period; housekeeping is dispatched by actual usage, not a fixed rota; HVAC and lighting follow real occupancy; poor air quality triggers an alert before members complain. Ops shifts from reactive tickets to predictive nudges.</div>
+
+    <div class="card-hd" style="margin-bottom:8px">MVP system design</div>
+    <div class="flow-h">
+      <div class="flow-node"><div class="fn-label">Sensors (edge)</div><div class="fn-text">PIR occupancy · CO₂/air quality · energy meters · desk presence</div></div>
+      <div class="flow-h-arrow"><i class="ti ti-arrow-right"></i></div>
+      <div class="flow-node"><div class="fn-label">Gateway</div><div class="fn-text">LoRaWAN / WiFi gateway aggregates + timestamps readings</div></div>
+      <div class="flow-h-arrow"><i class="ti ti-arrow-right"></i></div>
+      <div class="flow-node" style="background:var(--teal-bg)"><div class="fn-label" style="color:var(--teal-text)">Rules + ML engine</div><div class="fn-text" style="color:var(--teal-text)">Ghost-booking detection · housekeeping demand model · anomaly alerts</div></div>
+      <div class="flow-h-arrow"><i class="ti ti-arrow-right"></i></div>
+      <div class="flow-node"><div class="fn-label">Actions</div><div class="fn-text">Auto-release rooms · dispatch ops tasks · HVAC/lighting control · SpaceIQ feed</div></div>
+    </div>
+    <div class="bizcase" style="background:var(--bg-secondary);color:var(--text-muted)"><strong style="color:var(--text)">Why it's feasible:</strong> battery sensors + LoRaWAN need no rewiring and install in days. Start with rules (release a room with zero occupancy 15 min after start); layer ML once a few weeks of data exists. One floor proves the unit economics before rollout.</div>
+
+    <div class="measure-grid">
+      <div class="measure-card" style="background:var(--teal-bg);color:var(--teal-text)"><div class="measure-num">Measure 1</div><div class="measure-title">Recovered bookable hours</div><div class="measure-desc">Target: reclaim 15–20% of "booked but empty" room-hours via auto-release — directly lifts effective capacity and revenue per sq ft.</div></div>
+      <div class="measure-card" style="background:var(--teal-bg);color:var(--teal-text)"><div class="measure-num">Measure 2</div><div class="measure-title">Energy cost per sq ft</div><div class="measure-desc">Target: 8–12% energy reduction through occupancy-linked HVAC/lighting, without member comfort complaints.</div></div>
+    </div>
+    <div class="bizcase" style="background:var(--teal-bg);color:var(--teal-text)"><strong>Business case:</strong> recovered room-hours and lower energy both improve revenue per sq ft (a core KPI) and margin — the metric Virwani says flows straight to the bottom line. Usage-based housekeeping cuts ops cost while improving the member experience. Sensor payback is typically well under a year per floor.</div>
+    <div class="tags" style="margin-top:12px"><span class="tech-tag">LoRaWAN sensors</span><span class="tech-tag">MQTT</span><span class="tech-tag">Time-series DB</span><span class="tech-tag">Rules engine → ML</span><span class="tech-tag">BMS/HVAC integration</span><span class="tech-tag">Ops dispatch API</span></div>
+  </div>
+
+  <div class="bizcase" style="background:var(--blue-bg);color:var(--blue-text)">
+    <strong>How they connect:</strong> SmartPass and SenseSpace both emit into the same usage event stream that powers SpaceIQ (enterprise analytics) and DealDesk (billing). The physical layer isn't a side project — it's the sensing substrate that makes every other AI bet sharper.
+  </div>
+
+</div>
+
+<footer>Built by <a href="https://www.linkedin.com/in/manojkumar-pm/" target="_blank">Manoj Kumar</a> · Part of the <a href="index.html">WeWork India AI strategy</a></footer>
+</body>
+</html>

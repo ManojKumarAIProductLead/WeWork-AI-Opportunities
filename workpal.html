@@ -106,10 +106,21 @@
   .note { font-size: 12px; color: var(--text-muted); padding: 9px 12px; background: var(--teal-bg); border-radius: 8px; line-height: 1.6; margin-top: 10px; }
   .note strong { color: var(--teal-text); font-weight: 500; }
 
+  .section-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 1rem; padding-bottom: 8px; border-bottom: 0.5px solid var(--border); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-tag { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: var(--bg-secondary); color: var(--text-muted); border: 0.5px solid var(--border); font-family: ui-monospace, monospace; }
+  .measure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .measure-card { border-radius: 8px; padding: 12px 14px; }
+  .measure-num { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; opacity: 0.75; }
+  .measure-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .measure-desc { font-size: 12px; line-height: 1.55; opacity: 0.9; }
+  .bizcase { border-radius: 8px; padding: 11px 14px; font-size: 13px; line-height: 1.6; }
+  .bizcase strong { font-weight: 500; }
   @media (max-width: 700px) {
     .layout { grid-template-columns: 1fr; }
     .metrics { grid-template-columns: repeat(2, 1fr); }
     .insight-strip { grid-template-columns: 1fr; }
+    .measure-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -288,6 +299,39 @@
       </div>
 
     </div>
+  </div>
+
+  <div class="card" style="margin-bottom:1.25rem">
+    <div class="card-hd">From support bot to one-stop hub <span class="card-hd-sub">cross-sell / up-sell built in</span></div>
+    <div style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-bottom:12px">WorkPal isn't just deflecting tickets — every conversation is a context-aware moment to surface a value-added service. Because the agent knows who the member is, where they are, and what they're doing, it can offer the right thing at the right time without feeling like an ad.</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+      <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--text-muted);line-height:1.5"><strong style="color:var(--text);font-weight:500">Booking a 6-person room →</strong> offer catering &amp; AV setup</div>
+      <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--text-muted);line-height:1.5"><strong style="color:var(--text);font-weight:500">Hitting day-pass limit 3rd time →</strong> suggest All-Access upgrade</div>
+      <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--text-muted);line-height:1.5"><strong style="color:var(--text);font-weight:500">Team growing →</strong> flag private-office options &amp; intro to sales</div>
+      <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--text-muted);line-height:1.5"><strong style="color:var(--text);font-weight:500">Frequent late stays →</strong> parking pass &amp; wellness add-ons</div>
+    </div>
+  </div>
+
+  <div class="section-label">Tech stack</div>
+  <div class="tags" style="margin-bottom:1.5rem">
+    <span class="tech-tag">LLM orchestrator (Claude/GPT)</span><span class="tech-tag">Intent + slot filling</span><span class="tech-tag">Tool-calling agents</span><span class="tech-tag">RAG over member FAQ/policies</span><span class="tech-tag">Booking/Helpdesk/Billing APIs</span><span class="tech-tag">CommunityGraph API</span><span class="tech-tag">Guardrails + escalation</span>
+  </div>
+
+  <div class="section-label">Success measures &amp; business case</div>
+  <div class="measure-grid">
+    <div class="measure-card" style="background:var(--teal-bg);color:var(--teal-text)">
+      <div class="measure-num">Measure 1 — deflection</div>
+      <div class="measure-title">% intents resolved without human escalation</div>
+      <div class="measure-desc">Target: 60%+ of routine member queries fully automated, cutting support cost while improving response time 7×.</div>
+    </div>
+    <div class="measure-card" style="background:var(--teal-bg);color:var(--teal-text)">
+      <div class="measure-num">Measure 2 — monetization</div>
+      <div class="measure-title">VAS attach rate via in-chat offers</div>
+      <div class="measure-desc">Target: lift value-added-service attach and average ticket size by converting support moments into contextual upsell.</div>
+    </div>
+  </div>
+  <div class="bizcase" style="background:var(--bg-secondary);color:var(--text-muted);margin-bottom:1.5rem">
+    <strong style="color:var(--text)">Business case:</strong> WorkPal hits two KPIs at once — it lowers cost-to-serve (est. ₹18L/month at current scale) and raises member LTV by making every interaction a service-and-sell channel at near-zero marginal cost. Built on the same agentic pattern as Sparky/Squiggly at Walmart — a production-shipped proof point.
   </div>
 
   <div class="insight-strip">

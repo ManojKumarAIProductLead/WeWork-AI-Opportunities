@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocationIQ — AI Site Selection · WeWork India</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="theme.css">
+<style>
+  .layout{display:grid;grid-template-columns:1.3fr 1fr;gap:1rem;margin-bottom:1rem}
+  .map-svg{width:100%;height:auto;border-radius:8px}
+  .site-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--border);font-size:13px}
+  .site-row:last-child{border-bottom:none}
+  .site-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+  .site-name{flex:1;color:var(--text)}
+  .site-sub{font-size:11px;color:var(--text-muted)}
+  .site-score{font-size:13px;font-weight:500;min-width:34px;text-align:right}
+  .factor-row{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px}
+  .factor-name{flex:1;color:var(--text-muted)}
+  .factor-bar{width:120px;height:5px;background:var(--bg-secondary);border-radius:3px;overflow:hidden}
+  .factor-fill{height:100%;background:var(--amber);border-radius:3px}
+  .factor-w{font-size:11px;color:var(--text-muted);min-width:30px;text-align:right}
+  .reality-box{background:var(--amber-bg);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--amber-text);line-height:1.65;margin-bottom:1rem}
+  .reality-box strong{font-weight:500}
+  @media(max-width:760px){.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html"><div class="nav-logo" style="background:#BA7517"><i class="ti ti-map-pin" style="font-size:14px"></i></div><span class="nav-title">WeWork India · AI Opportunities</span></a>
+  <a class="nav-back" href="index.html"><i class="ti ti-arrow-left" style="font-size:13px"></i> All demos</a>
+</nav>
+
+<div class="page">
+
+  <div class="page-hd">
+    <div class="page-eyebrow">Pillar 3 · Space & Asset Intelligence · For the Supply & Real-Estate team</div>
+    <div class="page-title">LocationIQ</div>
+    <div class="page-sub">ML + GIS scoring of candidate micro-markets for center expansion — combining mobility data, enterprise cluster density, talent supply, and demand signals into a single defensible score per site.</div>
+  </div>
+
+  <div class="reality-box">
+    <strong>Honest framing:</strong> a property investment is a low-frequency, high-stakes decision (₹15–25 Cr capex + a multi-year lease liability per center). LocationIQ is therefore <strong>not a daily AI dashboard</strong> — it's a long-term GIS study powered by ML models refreshed <strong>monthly</strong>, feeding a quarterly investment-committee pack. The AI's job is to make the shortlist defensible and kill bad sites early, not to replace deal judgment.
+  </div>
+
+  <div class="layout">
+    <div class="card">
+      <div class="card-hd">Bengaluru micro-market scores <span class="card-hd-sub">June 2026 refresh</span></div>
+      <svg class="map-svg" viewBox="0 0 460 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stylized map of Bengaluru showing scored candidate sites for expansion">
+        <rect width="460" height="360" fill="var(--bg-secondary)" rx="8"/>
+        <path d="M60,40 C140,20 280,30 400,60 C430,120 425,220 390,310 C280,340 150,335 70,300 C35,220 30,120 60,40 Z" fill="var(--bg-card)" stroke="var(--border)" stroke-width="1.5"/>
+        <path d="M150,60 C180,140 190,230 170,320" stroke="var(--border)" stroke-width="2" fill="none" stroke-dasharray="5,4"/>
+        <path d="M70,180 C170,170 300,175 420,190" stroke="var(--border)" stroke-width="2" fill="none" stroke-dasharray="5,4"/>
+        <text x="105" y="55" font-size="10" fill="var(--text-light)" font-family="sans-serif">NH-44</text>
+        <text x="385" y="182" font-size="10" fill="var(--text-light)" font-family="sans-serif">ORR</text>
+        <circle cx="330" cy="215" r="17" fill="#1D9E75" opacity="0.9"/>
+        <text x="330" y="219" font-size="10" fill="#fff" text-anchor="middle" font-weight="600" font-family="sans-serif">87</text>
+        <text x="330" y="248" font-size="10.5" fill="var(--text)" text-anchor="middle" font-family="sans-serif">Whitefield East</text>
+        <circle cx="255" cy="270" r="15" fill="#1D9E75" opacity="0.75"/>
+        <text x="255" y="274" font-size="10" fill="#fff" text-anchor="middle" font-weight="600" font-family="sans-serif">81</text>
+        <text x="255" y="300" font-size="10.5" fill="var(--text)" text-anchor="middle" font-family="sans-serif">Sarjapur ORR</text>
+        <circle cx="160" cy="120" r="13" fill="#BA7517" opacity="0.85"/>
+        <text x="160" y="124" font-size="10" fill="#fff" text-anchor="middle" font-weight="600" font-family="sans-serif">68</text>
+        <text x="160" y="148" font-size="10.5" fill="var(--text)" text-anchor="middle" font-family="sans-serif">Hebbal</text>
+        <circle cx="115" cy="230" r="12" fill="#BA7517" opacity="0.7"/>
+        <text x="115" y="234" font-size="10" fill="#fff" text-anchor="middle" font-weight="600" font-family="sans-serif">61</text>
+        <text x="115" y="257" font-size="10.5" fill="var(--text)" text-anchor="middle" font-family="sans-serif">Mysore Rd</text>
+        <circle cx="290" cy="110" r="11" fill="#A32D2D" opacity="0.75"/>
+        <text x="290" y="114" font-size="10" fill="#fff" text-anchor="middle" font-weight="600" font-family="sans-serif">44</text>
+        <text x="290" y="136" font-size="10.5" fill="var(--text)" text-anchor="middle" font-family="sans-serif">KR Puram</text>
+        <rect x="210" y="180" width="10" height="10" fill="var(--text)" rx="2"/>
+        <text x="226" y="189" font-size="10" fill="var(--text-muted)" font-family="sans-serif">Existing centers (CBD/Koramangala)</text>
+      </svg>
+      <div style="display:flex;gap:14px;margin-top:10px;font-size:11px;color:var(--text-muted)">
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1D9E75;vertical-align:-1px"></span> Strong (75+)</span>
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#BA7517;vertical-align:-1px"></span> Watch (55–74)</span>
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#A32D2D;vertical-align:-1px"></span> Avoid (&lt;55)</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:1rem">
+      <div class="card">
+        <div class="card-hd">Shortlist ranking</div>
+        <div class="site-row"><div class="site-dot" style="background:#1D9E75"></div><div><div class="site-name">Whitefield East</div><div class="site-sub">GCC absorption ↑ 23% YoY · metro line opens Q4</div></div><div class="site-score" style="color:#1D9E75">87</div></div>
+        <div class="site-row"><div class="site-dot" style="background:#1D9E75"></div><div><div class="site-name">Sarjapur ORR</div><div class="site-sub">Highest startup formation density · rent still pre-peak</div></div><div class="site-score" style="color:#1D9E75">81</div></div>
+        <div class="site-row"><div class="site-dot" style="background:#BA7517"></div><div><div class="site-name">Hebbal</div><div class="site-sub">Airport-corridor growth, but 3 competitor openings in 6 mo</div></div><div class="site-score" style="color:#BA7517">68</div></div>
+        <div class="site-row"><div class="site-dot" style="background:#A32D2D"></div><div><div class="site-name">KR Puram</div><div class="site-sub">Mobility inflow weak · low enterprise cluster score</div></div><div class="site-score" style="color:#A32D2D">44</div></div>
+      </div>
+      <div class="card">
+        <div class="card-hd">Scoring factors <span class="card-hd-sub">model weights</span></div>
+        <div class="factor-row"><div class="factor-name">Enterprise & GCC cluster density</div><div class="factor-bar"><div class="factor-fill" style="width:90%"></div></div><div class="factor-w">25%</div></div>
+        <div class="factor-row"><div class="factor-name">Mobility inflow (telecom/transit data)</div><div class="factor-bar"><div class="factor-fill" style="width:72%"></div></div><div class="factor-w">20%</div></div>
+        <div class="factor-row"><div class="factor-name">Talent density (job postings, commute origin)</div><div class="factor-bar"><div class="factor-fill" style="width:65%"></div></div><div class="factor-w">18%</div></div>
+        <div class="factor-row"><div class="factor-name">Rent economics & landlord quality</div><div class="factor-bar"><div class="factor-fill" style="width:58%"></div></div><div class="factor-w">16%</div></div>
+        <div class="factor-row"><div class="factor-name">Competitive saturation gap</div><div class="factor-bar"><div class="factor-fill" style="width:43%"></div></div><div class="factor-w">12%</div></div>
+        <div class="factor-row"><div class="factor-name">Existing-member demand signals</div><div class="factor-bar"><div class="factor-fill" style="width:32%"></div></div><div class="factor-w">9%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">How it works — architecture</div>
+  <div class="card" style="margin-bottom:1rem">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+      <div class="arch-box"><div class="arch-label">1 · Data sources</div><div class="arch-name">Monthly ingestion</div><div class="arch-desc">Telecom mobility panels · transit/POI data · job postings · broker rent comps · competitor openings · WeWork demand (searches, waitlists, member commute origins)</div></div>
+      <div class="arch-box"><div class="arch-label">2 · Feature layer</div><div class="arch-name">GIS feature store</div><div class="arch-desc">H3 hexagonal grid over each city; 40+ features per cell, versioned monthly for back-testing</div></div>
+      <div class="arch-box" style="background:var(--amber-bg)"><div class="arch-label" style="color:var(--amber-text)">3 · Models</div><div class="arch-name" style="color:var(--amber-text)">Score + forecast</div><div class="arch-desc" style="color:var(--amber-text)">Gradient-boosted site score trained on existing-center ramp history · hedonic rent model · 12-month occupancy forecast with confidence bands</div></div>
+      <div class="arch-box"><div class="arch-label">4 · Output</div><div class="arch-name">Quarterly IC pack</div><div class="arch-desc">Ranked shortlist with score breakdown, sensitivity analysis, and "what would change our mind" triggers — human decision stays with the deal team</div></div>
+    </div>
+  </div>
+
+  <div class="section-label">Tech stack</div>
+  <div class="tags" style="margin-bottom:1.5rem">
+    <span class="tech-tag">PostGIS + H3</span><span class="tech-tag">Python / GeoPandas</span><span class="tech-tag">XGBoost</span><span class="tech-tag">dbt + Airflow (monthly refresh)</span><span class="tech-tag">Kepler.gl maps</span><span class="tech-tag">Telecom mobility API</span><span class="tech-tag">LLM-generated IC narrative</span>
+  </div>
+
+  <div class="section-label">Success measures & business case</div>
+  <div class="measure-grid">
+    <div class="measure-card" style="background:var(--amber-bg);color:var(--amber-text)">
+      <div class="measure-num">Measure 1 — ramp speed</div>
+      <div class="measure-title">Months to 70% occupancy for new centers</div>
+      <div class="measure-desc">Target: model-backed sites ramp ≥25% faster than the historical average. Back-test on the last 10 openings before trusting it forward.</div>
+    </div>
+    <div class="measure-card" style="background:var(--amber-bg);color:var(--amber-text)">
+      <div class="measure-num">Measure 2 — forecast accuracy</div>
+      <div class="measure-title">12-month occupancy forecast error (MAPE)</div>
+      <div class="measure-desc">Target: &lt;12% error on predicted vs. actual occupancy at month 12. This is the trust metric that earns the model a seat at the IC table.</div>
+    </div>
+  </div>
+  <div class="bizcase" style="background:var(--bg-secondary);color:var(--text-muted)">
+    <strong style="color:var(--text)">Business case:</strong> one avoided bad site saves ₹15–25 Cr in capex plus a multi-year lease liability; one accelerated ramp on a 1,500-seat center is worth ~₹3–4 Cr in earlier revenue. Even a model that improves the hit rate of 4–6 annual decisions by one site pays for itself many times over. Cost to build: 2 engineers + 1 data scientist for one quarter, mostly on data acquisition.
+  </div>
+
+</div>
+
+<footer>Built by <a href="https://www.linkedin.com/in/manojkumar-pm/" target="_blank">Manoj Kumar</a> · Part of the <a href="index.html">WeWork India AI strategy</a></footer>
+</body>
+</html>
