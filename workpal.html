@@ -16,6 +16,7 @@
     --green-bg: #EAF3DE; --green-text: #27500A;
     --amber-bg: #FAEEDA; --amber-text: #633806;
     --purple-bg: #EEEDFE; --purple-text: #3C3489;
+    --coral-bg: #FAECE7; --coral-text: #712B13; --pink-bg: #FBEAF0; --pink-text: #72243E;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -27,6 +28,7 @@
       --green-bg: #173404; --green-text: #C0DD97;
       --amber-bg: #412402; --amber-text: #FAC775;
       --purple-bg: #26215C; --purple-text: #CECBF6;
+      --coral-bg: #4A1B0C; --coral-text: #F5C4B3; --pink-bg: #4B1528; --pink-text: #F4C0D1;
     }
   }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
@@ -309,6 +311,56 @@
       <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--text-muted);line-height:1.5"><strong style="color:var(--text);font-weight:500">Hitting day-pass limit 3rd time →</strong> suggest All-Access upgrade</div>
       <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--text-muted);line-height:1.5"><strong style="color:var(--text);font-weight:500">Team growing →</strong> flag private-office options &amp; intro to sales</div>
       <div style="background:var(--bg-secondary);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--text-muted);line-height:1.5"><strong style="color:var(--text);font-weight:500">Frequent late stays →</strong> parking pass &amp; wellness add-ons</div>
+    </div>
+  </div>
+
+  <div class="section-label">WeWork Marketplace — services, asset-light</div>
+  <div class="card" style="margin-bottom:1.25rem">
+    <div style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-bottom:14px">WorkPal becomes the front door to a marketplace of partner services. WeWork owns none of the assets and runs none of the operations — partners deliver, members discover and pay in one tap, and WeWork earns a take-rate on every booking. Below: a member's in-app services hub.</div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+      <div style="background:var(--bg-secondary);border-radius:10px;padding:12px;border:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:30px;height:30px;border-radius:8px;background:var(--coral-bg);color:var(--coral-text);display:flex;align-items:center;justify-content:center;font-size:15px"><i class="ti ti-barbell"></i></div><div style="font-size:13px;font-weight:500;color:var(--text)">Cult.fit</div></div>
+        <div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">On-site &amp; nearby gym + class passes. "Book a 6pm HIIT class downstairs."</div>
+        <div style="font-size:10px;color:var(--teal-text);background:var(--teal-bg);border-radius:20px;padding:2px 8px;display:inline-block;margin-top:8px">Fitness</div>
+      </div>
+      <div style="background:var(--bg-secondary);border-radius:10px;padding:12px;border:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:30px;height:30px;border-radius:8px;background:var(--amber-bg);color:var(--amber-text);display:flex;align-items:center;justify-content:center;font-size:15px"><i class="ti ti-mood-kid"></i></div><div style="font-size:13px;font-weight:500;color:var(--text)">Klay</div></div>
+        <div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Daycare &amp; creche near the center. "Reserve a slot for my child this week."</div>
+        <div style="font-size:10px;color:var(--teal-text);background:var(--teal-bg);border-radius:20px;padding:2px 8px;display:inline-block;margin-top:8px">Childcare</div>
+      </div>
+      <div style="background:var(--bg-secondary);border-radius:10px;padding:12px;border:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:30px;height:30px;border-radius:8px;background:var(--coral-bg);color:var(--coral-text);display:flex;align-items:center;justify-content:center;font-size:15px"><i class="ti ti-tools-kitchen-2"></i></div><div style="font-size:13px;font-weight:500;color:var(--text)">Swiggy</div></div>
+        <div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Team lunch &amp; café orders, billed to the company. "Cater tomorrow's offsite for 12."</div>
+        <div style="font-size:10px;color:var(--teal-text);background:var(--teal-bg);border-radius:20px;padding:2px 8px;display:inline-block;margin-top:8px">Food</div>
+      </div>
+      <div style="background:var(--bg-secondary);border-radius:10px;padding:12px;border:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:30px;height:30px;border-radius:8px;background:var(--blue-bg);color:var(--blue-text);display:flex;align-items:center;justify-content:center;font-size:15px"><i class="ti ti-device-laptop"></i></div><div style="font-size:13px;font-weight:500;color:var(--text)">IT supplies</div></div>
+        <div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Monitors, dongles, chairs on-demand. "I need a second monitor at my desk today."</div>
+        <div style="font-size:10px;color:var(--teal-text);background:var(--teal-bg);border-radius:20px;padding:2px 8px;display:inline-block;margin-top:8px">Equipment</div>
+      </div>
+      <div style="background:var(--bg-secondary);border-radius:10px;padding:12px;border:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:30px;height:30px;border-radius:8px;background:var(--pink-bg);color:var(--pink-text);display:flex;align-items:center;justify-content:center;font-size:15px"><i class="ti ti-heart-handshake"></i></div><div style="font-size:13px;font-weight:500;color:var(--text)">Wellness</div></div>
+        <div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Physio, salon, health check-ups via partners. "Book a 20-min chair massage at 4pm."</div>
+        <div style="font-size:10px;color:var(--teal-text);background:var(--teal-bg);border-radius:20px;padding:2px 8px;display:inline-block;margin-top:8px">Wellness</div>
+      </div>
+      <div style="background:var(--bg-secondary);border-radius:10px;padding:12px;border:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:30px;height:30px;border-radius:8px;background:var(--purple-bg);color:var(--purple-text);display:flex;align-items:center;justify-content:center;font-size:15px"><i class="ti ti-yoga"></i></div><div style="font-size:13px;font-weight:500;color:var(--text)">Meditation</div></div>
+        <div style="font-size:11.5px;color:var(--text-muted);line-height:1.5">Guided sessions + quiet-room booking. "Reserve the calm room for a 10-min reset."</div>
+        <div style="font-size:10px;color:var(--teal-text);background:var(--teal-bg);border-radius:20px;padding:2px 8px;display:inline-block;margin-top:8px">Mindfulness</div>
+      </div>
+    </div>
+
+    <div style="background:var(--teal-bg);border-radius:8px;padding:11px 14px;font-size:12.5px;color:var(--teal-text);line-height:1.6"><strong style="font-weight:500">How it stays asset-light:</strong> partners bring the assets and run operations; WorkPal handles discovery, booking, consolidated billing, and trust/ratings; WeWork earns a take-rate on each transaction. The same agent that resolves support tickets becomes a high-margin revenue channel.</div>
+  </div>
+
+  <div class="card" style="margin-bottom:1.25rem">
+    <div class="card-hd">In-chat marketplace flow <span class="card-hd-sub">one tap, one bill</span></div>
+    <div class="chat-window">
+      <div class="msg msg-user"><div class="msg-avatar av-user">MK</div><div class="bubble bubble-user">Long day ahead — anything to help me reset and refuel?</div></div>
+      <div class="msg"><div class="msg-avatar av-bot"><i class="ti ti-message-chatbot" style="font-size:13px"></i></div><div><div class="bubble bubble-bot">A few options near you at Prestige:</div><div class="action-chips"><span class="chip">🧘 Calm room · 10 min</span><span class="chip">💆 Chair massage · 4pm</span><span class="chip">🥗 Swiggy lunch</span></div></div></div>
+      <div class="msg msg-user"><div class="msg-avatar av-user">MK</div><div class="bubble bubble-user">Massage at 4, and a salad now</div></div>
+      <div class="msg"><div class="msg-avatar av-bot"><i class="ti ti-message-chatbot" style="font-size:13px"></i></div><div class="bubble bubble-bot">Done ✓ Massage booked 4:00 (Wellness partner), salad arriving ~25 min (Swiggy). Both on your monthly WeWork statement — no separate payment.</div></div>
     </div>
   </div>
 
