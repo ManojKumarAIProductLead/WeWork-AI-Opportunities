@@ -3,43 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adoption Diagnosis & Fix — WeWork India</title>
+<title>Adoption & Engagement — WeWork India</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <link rel="stylesheet" href="theme.css">
 <style>
-  .big-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
+  .big-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem}
   .stat-card{background:var(--bg-card);border:0.5px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem}
-  .stat-num{font-size:34px;font-weight:500;line-height:1;margin-bottom:6px}
+  .stat-num{font-size:32px;font-weight:500;line-height:1;margin-bottom:6px}
   .stat-label{font-size:12.5px;color:var(--text-muted);line-height:1.5}
-  .funnel{display:flex;flex-direction:column;gap:4px;margin:10px 0}
-  .funnel-bar{display:flex;align-items:center;gap:12px}
-  .funnel-fill{height:34px;border-radius:6px;display:flex;align-items:center;padding-left:12px;font-size:12.5px;font-weight:500;color:#fff;white-space:nowrap}
-  .funnel-note{font-size:11.5px;color:var(--text-muted);flex:1}
-  .principle{background:#1a1a1a;color:#f0ede8;border-radius:14px;padding:1.4rem 1.6rem;margin-bottom:1.25rem}
-  .principle .pl-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#9a988f;margin-bottom:8px}
-  .principle .pl-text{font-size:19px;font-weight:500;line-height:1.5}
-  .principle .pl-text em{font-style:normal;color:#85B7EB}
-  .reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0.5rem}
-  .reason{background:var(--bg-card);border:0.5px solid var(--border);border-radius:12px;padding:1rem 1.2rem}
-  .reason-icon{font-size:18px;color:var(--coral);margin-bottom:8px}
-  .reason-t{font-size:14px;font-weight:500;margin-bottom:5px}
-  .reason-d{font-size:12.5px;color:var(--text-muted);line-height:1.6}
-  .fix-block{background:var(--bg-card);border:0.5px solid var(--border);border-radius:14px;padding:1.4rem;margin-bottom:10px}
-  .fix-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-  .fix-num{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;flex-shrink:0}
-  .fix-name{font-size:16px;font-weight:500}
-  .fix-sub{font-size:12px;color:var(--text-muted)}
-  .fix-body{font-size:13px;color:var(--text-muted);line-height:1.65;margin-bottom:10px}
-  .fix-body strong{color:var(--text);font-weight:500}
-  .analog{font-size:12px;color:var(--text-muted);background:var(--bg-secondary);border-radius:8px;padding:9px 12px;line-height:1.55}
-  .analog strong{color:var(--text);font-weight:500}
-  .migration{display:flex;align-items:stretch;gap:0;margin-top:10px;overflow-x:auto}
-  .mig-step{flex:1;min-width:120px;background:var(--bg-secondary);border-radius:8px;padding:10px 12px}
-  .mig-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:4px}
-  .mig-text{font-size:11.5px;color:var(--text);line-height:1.45}
-  .mig-arrow{display:flex;align-items:center;padding:0 6px;color:var(--text-light);font-size:14px;flex-shrink:0}
-  .oneliner{background:var(--teal-bg);border-radius:12px;padding:1.2rem 1.4rem;font-size:14.5px;color:var(--teal-text);line-height:1.6;font-weight:500}
-  @media(max-width:760px){.big-stat,.reason-grid{grid-template-columns:1fr}.migration{flex-direction:column;gap:6px}.mig-arrow{transform:rotate(90deg);padding:2px 0}}
+  .frame-note{background:var(--bg-secondary);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:0.5rem}
+  .frame-note strong{color:var(--text);font-weight:500}
+  .part{background:var(--bg-card);border:0.5px solid var(--border);border-radius:14px;padding:1.4rem;margin-bottom:10px}
+  .part-top{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .part-num{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;flex-shrink:0}
+  .part-name{font-size:16px;font-weight:500}
+  .part-sub{font-size:12px;color:var(--text-muted)}
+  .sub-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin:14px 0 8px}
+  .blist{list-style:none;display:flex;flex-direction:column;gap:8px;margin:0}
+  .blist li{font-size:13px;color:var(--text-muted);line-height:1.55;display:flex;gap:9px;align-items:flex-start}
+  .blist li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--text-light);margin-top:7px;flex-shrink:0}
+  .blist li strong{color:var(--text);font-weight:500}
+  .genai{font-size:10px;padding:1px 7px;border-radius:20px;background:var(--purple-bg);color:var(--purple-text);font-weight:500;white-space:nowrap;display:inline-block}
+  .built{font-size:10px;padding:1px 7px;border-radius:20px;background:var(--green-bg);color:var(--green-text);font-weight:500;white-space:nowrap;display:inline-block}
+  .bet{background:var(--bg-card);border:0.5px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:10px}
+  .bet-hd{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+  .bet-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+  .bet-name{font-size:15px;font-weight:500;color:var(--text)}
+  .bet-body{font-size:12.5px;color:var(--text-muted);line-height:1.6}
+  .bet-body strong{color:var(--text);font-weight:500}
+  @media(max-width:760px){.big-stat{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -52,102 +44,115 @@
 <div class="page">
 
   <div class="page-hd">
-    <div class="page-eyebrow">The hard question · Adoption & engagement</div>
-    <div class="page-title">Why the app sits at 40% — and the one thing that fixes it</div>
-    <div class="page-sub">The features already exist. Members still don't download or open the app. That isn't a feature gap — it's a diagnosis that the app isn't on the critical path of anyone's day. Here's the honest read and the fix.</div>
+    <div class="page-eyebrow">Adoption & engagement</div>
+    <div class="page-title">Growing app downloads and DAU/MAU</div>
+    <div class="page-sub">Most features already exist; downloads sit at ~40% with low daily use. The common thread across the ideas below: tie the app to actions members already take — entry, daily work tasks, services — and add a GenAI layer over systems that already run.</div>
   </div>
 
   <div class="big-stat">
-    <div class="stat-card"><div class="stat-num" style="color:var(--coral)">40%</div><div class="stat-label">of members have downloaded the app — flat, despite shipping feature after feature</div></div>
-    <div class="stat-card"><div class="stat-num" style="color:var(--amber)">Low</div><div class="stat-label">active usage even among those who downloaded — they grabbed it once, then went dormant</div></div>
-    <div class="stat-card"><div class="stat-num" style="color:var(--teal)">100%</div><div class="stat-label">of members walk through the door every day — the daily action the app doesn't yet own</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--coral)">~40%</div><div class="stat-label">of members have downloaded the app — flat despite new features</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--amber)">Low</div><div class="stat-label">daily active use, including among those who already downloaded</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--teal)">100%</div><div class="stat-label">of members enter a center on the days they come in — the app doesn't yet own this</div></div>
   </div>
 
-  <div class="principle">
-    <div class="pl-label">The reframe</div>
-    <div class="pl-text">The 40% is the most useful data we have. It proves adoption isn't downstream of <em>features</em> — we shipped those. Adoption is downstream of <em>necessity</em>. You can't feature your way out of an adoption problem.</div>
+  <div class="frame-note">
+    <strong>Context:</strong> most members are SMB and GCC employees. They book seats for a period, enter with a keycard or NFC, and use offline amenities (café, printers). Each of those has a frictionless non-app path today, so the app stays optional. The three parts below cover near-term mechanics, personalising what exists, and structural bets — flagged where they're <span class="genai">GenAI</span> or already <span class="built">built</span> in this portfolio.
   </div>
 
-  <div class="section-label">Why features don't move the needle here</div>
-  <div class="reason-grid">
-    <div class="reason">
-      <div class="reason-icon"><i class="ti ti-pill"></i></div>
-      <div class="reason-t">The app is a vitamin, not a painkiller</div>
-      <div class="reason-d">Every job the app does has a frictionless physical alternative that already works: the keycard opens the door, UPI pays the café, the badge runs the printer, wifi is saved. People reach for what's already in their hand.</div>
+  <div class="section-label">Three parts to grow DAU / MAU</div>
+
+  <div class="part">
+    <div class="part-top">
+      <div class="part-num" style="background:var(--blue-bg);color:var(--blue-text)">1</div>
+      <div><div class="part-name">Onsite &amp; offsite growth mechanics</div><div class="part-sub">Acquisition — get the download, get the first action</div></div>
     </div>
-    <div class="reason">
-      <div class="reason-icon"><i class="ti ti-route-off"></i></div>
-      <div class="reason-t">Nothing sits on the critical path</div>
-      <div class="reason-d">No single unavoidable daily action requires the app. So members download it once to do one thing — book a desk — and never route back. That's exactly the dormancy pattern we see.</div>
+    <div class="sub-label">Offsite</div>
+    <ul class="blist">
+      <li><strong>CRM campaigns</strong> to member-company admins and employees at onboarding and renewal.</li>
+      <li><strong>Admin-led provisioning</strong> — office admin sets up access digitally, pulling the whole team onto the app.</li>
+      <li><strong>In-company referral</strong> — invite colleagues to book adjacent desks, the same room, or join a team event.</li>
+    </ul>
+    <div class="sub-label">Onsite</div>
+    <ul class="blist">
+      <li><strong>QR nudges on physical surfaces</strong> — desks, meeting rooms, café, printers — each opening one app action via App Clip / Instant App, no full install first, then prompt to keep the app.</li>
+      <li><strong>Day-one setup</strong> required to get desk, wifi, and access on the first visit — uses unavoidable first-day friction as the trigger.</li>
+      <li><strong>In-center screens &amp; signage</strong> tied to app-only actions: event RSVP, extend a room, order from the café.</li>
+    </ul>
+  </div>
+
+  <div class="part">
+    <div class="part-top">
+      <div class="part-num" style="background:var(--teal-bg);color:var(--teal-text)">2</div>
+      <div><div class="part-name">Improve &amp; personalise existing features</div><div class="part-sub">Engagement — make what exists faster, smarter, and worth opening</div></div>
     </div>
-    <div class="reason">
-      <div class="reason-icon"><i class="ti ti-user-question"></i></div>
-      <div class="reason-t">The employee never chose WeWork</div>
-      <div class="reason-d">In a B2B2C model the company picks WeWork; the employee is just assigned a desk. There's no onboarding, no moment of magic, no reason to form a habit — the activation moment that every consumer app engineers simply doesn't exist.</div>
+    <ul class="blist" style="margin-top:8px">
+      <li><strong>Make daily basics app-first</strong> — booking, wifi join, guest passes, and support faster through the app than the offline path.</li>
+      <li><strong>GenAI concierge (WorkPal)</strong> — natural-language booking, support, and service requests over existing booking/helpdesk/billing APIs. <span class="genai">GenAI</span> <span class="built">built</span></li>
+      <li><strong>Personalised home screen</strong> from behavioural data — usual desk, usual coffee, calendar gaps — built from app and badge activity, not ops-heavy events. <span class="genai">GenAI</span></li>
+      <li><strong>Proactive nudges</strong> — "90-minute gap at 2 — book the calm room or a 4pm class?" — from calendar and presence context only WeWork holds. <span class="genai">GenAI</span></li>
+      <li><strong>Useful-only notifications</strong> — room in 10 minutes, delivery arrived, invoice ready — not generic broadcasts.</li>
+    </ul>
+  </div>
+
+  <div class="part">
+    <div class="part-top">
+      <div class="part-num" style="background:var(--coral-bg);color:var(--coral-text)">3</div>
+      <div><div class="part-name">Big bets</div><div class="part-sub">Structural — make the app part of a daily, often mandatory action</div></div>
     </div>
-    <div class="reason">
-      <div class="reason-icon"><i class="ti ti-chart-bar-off"></i></div>
-      <div class="reason-t">We're measuring the wrong thing</div>
-      <div class="reason-d">Downloads are a vanity ceiling and "we have features" is a vanity input. The real metric: does a member take one action through the app every day that they can't easily do any other way? Today, no.</div>
+    <div style="font-size:13px;color:var(--text-muted);line-height:1.6;margin:6px 0 14px">These tie the app to something members do daily or must do, so usage stops being optional. Each is asset-lite and ops-lite — wrapping systems that already run rather than rebuilding them.</div>
+
+    <div class="bet">
+      <div class="bet-hd"><div class="bet-icon" style="background:var(--coral-bg);color:var(--coral-text)"><i class="ti ti-key"></i></div><div class="bet-name">Mobile keycard as default entry</div><span class="built">covered</span></div>
+      <div class="bet-body">Entry is the only 100%-frequency daily action. Make the phone the default key; the physical card becomes a fallback, then is deprecated center by center. Converts entry into a daily app open. Managed migration, not a hard switch-off.</div>
+    </div>
+
+    <div class="bet">
+      <div class="bet-hd"><div class="bet-icon" style="background:var(--blue-bg);color:var(--blue-text)"><i class="ti ti-briefcase"></i></div><div class="bet-name">Employer SaaS suite — one-stop employee console</div><span class="genai">GenAI</span></div>
+      <div class="bet-body">An AI-powered offering for member companies covering <strong>HRMS-lite (leave, attendance from check-in data), travel booking, benefits &amp; reimbursement, and credits/wellness</strong>. Employees do these weekly or monthly anyway — if they live in the WeWork app, the app becomes essential, not optional. Wraps existing HRMS / travel / expense tools via integrations; a conversational LLM layer handles "file this reimbursement", "book my travel", "what's my leave balance".</div>
+    </div>
+
+    <div class="bet">
+      <div class="bet-hd"><div class="bet-icon" style="background:var(--purple-bg);color:var(--purple-text)"><i class="ti ti-users-group"></i></div><div class="bet-name">Talent marketplace — expertise between members</div><span class="genai">GenAI</span></div>
+      <div class="bet-body">A Topmate / Toptal-style layer where members offer and find <strong>coaching, mentoring, advisory, and freelance projects</strong> across the WeWork network. LLM matches a need to the right expert using the member graph; WeWork takes a take-rate. Gives members a reason to open the app beyond desk booking, and deepens the community moat. Builds on CommunityGraph.</div>
+    </div>
+
+    <div class="bet">
+      <div class="bet-hd"><div class="bet-icon" style="background:var(--teal-bg);color:var(--teal-text)"><i class="ti ti-wallet"></i></div><div class="bet-name">Stored-value wallet + café / amenity order-ahead</div></div>
+      <div class="bet-body">Order coffee or lunch from the desk, skip the queue; preload credits. The order-ahead utility is a daily reason to open the app; stored preferences and balance raise switching cost.</div>
+    </div>
+
+    <div class="bet">
+      <div class="bet-hd"><div class="bet-icon" style="background:var(--coral-bg);color:var(--coral-text)"><i class="ti ti-building-store"></i></div><div class="bet-name">VAS marketplace in WorkPal</div><span class="built">built</span></div>
+      <div class="bet-body">Cult.fit, Klay, Swiggy, IT supplies, wellness, meditation — booked and billed in-app, asset-lite. Already prototyped in the <a href="workpal.html" style="color:var(--coral);text-decoration:none">WorkPal demo</a>.</div>
     </div>
   </div>
 
-  <div class="section-label">The fix — put the app on the one path no one can skip</div>
-
-  <div class="fix-block">
-    <div class="fix-top">
-      <div class="fix-num" style="background:var(--coral-bg);color:var(--coral-text)">1</div>
-      <div><div class="fix-name">Make the phone the key</div><div class="fix-sub">Entry is the only 100%-frequency daily action — make the app own it</div></div>
-    </div>
-    <div class="fix-body">Don't make the app <em>better</em> — make it <strong>necessary</strong>. When the turnstile opens best (or only) via the phone, download stops being a marketing campaign and becomes a precondition of walking in. This is a forcing function, not a feature: it converts the single unavoidable action of the day into a daily app open — the habit everything else (café, VAS, networking, stored value) has to be built on top of.</div>
-    <div class="analog"><strong>Precedent:</strong> Disney didn't drive app adoption by adding features — the MagicBand/app became the key to your room, rides, and payments, so there was no parallel path and adoption was near-total. Airlines grew mobile boarding passes by making the phone the credential and optimizing the gate around it until paper felt worse. <strong>Adoption follows the credential, not the feature.</strong></div>
-
-    <div style="font-size:12px;color:var(--text-muted);margin:14px 0 6px;font-weight:500">It's a managed migration, not a Monday mandate:</div>
-    <div class="migration">
-      <div class="mig-step"><div class="mig-label">Phase 1</div><div class="mig-text">Phone access is genuinely faster &amp; becomes the default; card still works</div></div>
-      <div class="mig-arrow"><i class="ti ti-arrow-right"></i></div>
-      <div class="mig-step"><div class="mig-label">Phase 2</div><div class="mig-text">New joiners &amp; new centers launch phone-first; card is fallback only</div></div>
-      <div class="mig-arrow"><i class="ti ti-arrow-right"></i></div>
-      <div class="mig-step"><div class="mig-label">Phase 3</div><div class="mig-text">Card deprecated over quarters; designed-for edge cases (guests, devices)</div></div>
-    </div>
+  <div class="section-label">The GenAI layer — LLMs on top of existing systems</div>
+  <div class="card" style="margin-bottom:1.5rem">
+    <ul class="blist">
+      <li><strong>Conversational concierge</strong> over booking, support, and billing APIs — WorkPal.</li>
+      <li><strong>Natural-language employer console</strong> over HRMS, travel, and expense tools — the SaaS suite.</li>
+      <li><strong>Need-to-expert matching</strong> over the member graph — the talent marketplace.</li>
+      <li><strong>Personalised nudges</strong> from behavioural, calendar, and presence data — the home screen and proactive prompts.</li>
+    </ul>
+    <div style="font-size:12px;color:var(--text-muted);line-height:1.6;margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">Each sits on systems WeWork already runs, so the build is an integration-and-orchestration effort, not a rebuild.</div>
   </div>
 
-  <div class="fix-block">
-    <div class="fix-top">
-      <div class="fix-num" style="background:var(--amber-bg);color:var(--amber-text)">2</div>
-      <div><div class="fix-name">Manufacture a day-one activation moment</div><div class="fix-sub">Use unavoidable first-day friction as the trigger, reward it instantly</div></div>
-    </div>
-    <div class="fix-body">The employee has no "aha" because they never chose WeWork. So engineer one at first contact: <strong>day one, the only way to get your desk, your wifi, and through the door is a 30-second app setup — and that setup immediately does something delightful</strong> (access pass lands in your wallet, your desk shows on a map, first coffee's on the house, calendar synced so the app already knows your week). This fixes both the 60% who never download and the dormancy in the 40% who did.</div>
-    <div class="analog"><strong>The B2B2C handoff:</strong> the admin gets the whole company onto the app for administrative reasons (provisioning, billing, seat management) — that scales downloads one-admin-to-many-employees. Then the daily-utility + context engine keeps the individual engaged for their own reasons. Acquisition is B2B-led; engagement is B2C-led; both run through one app.</div>
-  </div>
-
-  <div class="fix-block">
-    <div class="fix-top">
-      <div class="fix-num" style="background:var(--teal-bg);color:var(--teal-text)">3</div>
-      <div><div class="fix-name">Re-anchor the metric on the daily power-action</div><div class="fix-sub">Stop counting downloads; count daily-active against one action</div></div>
-    </div>
-    <div class="fix-body">Pick the single "power action" — entry — make the app unambiguously own it, and measure <strong>daily-active against that</strong>, not against a feature count. Once one daily action genuinely requires the app, downloads and DAU stop being targets you chase and become outputs that take care of themselves. Then — and only then — the café order-ahead, stored-value wallet, and context-driven nudges have a daily-open habit to attach to.</div>
-  </div>
-
-  <div class="section-label">Success measures &amp; business case</div>
+  <div class="section-label">Success measures</div>
   <div class="measure-grid">
     <div class="measure-card" style="background:var(--coral-bg);color:var(--coral-text)">
-      <div class="measure-num">Measure 1 — necessity</div>
+      <div class="measure-num">Measure 1</div>
       <div class="measure-title">Daily app-open rate among present members</div>
-      <div class="measure-desc">Target: of members who badge in on a given day, the share who opened the app that day climbs toward 100% as phone-access rolls out — the true adoption signal.</div>
+      <div class="measure-desc">Of members who badge in on a given day, the share who opened the app that day — the clearest signal that the app is on the daily path.</div>
     </div>
     <div class="measure-card" style="background:var(--coral-bg);color:var(--coral-text)">
-      <div class="measure-num">Measure 2 — activation</div>
+      <div class="measure-num">Measure 2</div>
       <div class="measure-title">Day-1 setup completion for new members</div>
-      <div class="measure-desc">Target: new joiners completing app setup within their first visit (the manufactured activation moment) — fixes the 60% who never download at the source.</div>
+      <div class="measure-desc">New joiners completing app setup on their first visit — addresses the members who never download at the source.</div>
     </div>
   </div>
-  <div class="bizcase" style="background:var(--bg-secondary);color:var(--text-muted);margin-bottom:1.5rem">
-    <strong style="color:var(--text)">Business case:</strong> adoption isn't the goal — it's the gate. None of the monetization bets (VAS marketplace, cross-sell, CommunityGraph, stored-value wallet) can pay off without a daily-active base, and today there isn't one. Making the app the key unlocks the install and daily-open habit that every other revenue lever in this portfolio depends on. It's the lowest-glamour, highest-leverage move in the roadmap.
-  </div>
-
-  <div class="oneliner">
-    "We've proven features don't drive adoption here — we shipped them and we're at 40%. Adoption isn't downstream of features, it's downstream of necessity. So we stop adding capabilities people can route around, and put the app on the one path no one can skip: getting through the door."
+  <div class="bizcase" style="background:var(--bg-secondary);color:var(--text-muted)">
+    <strong style="color:var(--text)">Business case:</strong> the monetisation bets in this portfolio — VAS marketplace, employer suite, talent marketplace, stored-value — all depend on a daily-active base. Growing DAU/MAU is the gate that unlocks the rest.
   </div>
 
 </div>
